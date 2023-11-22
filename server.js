@@ -4,24 +4,53 @@ const cookieSession = require("cookie-session");
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  const allowedOrigins = [
-  "http://192.168.1.178:8081", 
-  "http://192.168.1.178:8082", 
-  "http://localhost:8081", 
-  "http://localhost:8082", 
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
-  "https://benevolent-jalebi-b22329.netlify.app",
-  "https://dormate.netlify.app",
-];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-       res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.header("Access-Control-Allow-credentials", true);
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   const allowedOrigins = [
+//   "http://192.168.1.178:8081", 
+//   "http://192.168.1.178:8082", 
+//   "http://localhost:8081", 
+//   "http://localhost:8082", 
+//   "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
+//   "https://benevolent-jalebi-b22329.netlify.app",
+//   "https://dormate.netlify.app",
+// ];
+//   const origin = req.headers.origin;
+//   if (allowedOrigins.includes(origin)) {
+//        res.setHeader('Access-Control-Allow-Origin', origin);
+//   }
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//   res.header("Access-Control-Allow-credentials", true);
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+//   next();
+// });
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    // [
+    "http://192.168.1.178:8081", 
+    "http://192.168.1.178:8082", 
+    "http://localhost:8081", 
+    "http://localhost:8082", 
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
+    "https://benevolent-jalebi-b22329.netlify.app",
+    "https://dormate.netlify.app",
+    // ]
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  // res.setHeader("Access-Control-Allow-Private-Network", true);
+  //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
+  // res.setHeader("Access-Control-Max-Age", 7200);
+
   next();
 });
 
