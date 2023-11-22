@@ -24,6 +24,7 @@ var corsOptions = {
     "http://localhost:8082", 
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
     "https://benevolent-jalebi-b22329.netlify.app",
+    "https://dormate.netlify.app",
   ],
   credentials: true
 };
