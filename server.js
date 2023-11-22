@@ -5,7 +5,7 @@ const dbConfig = require("./app/config/db.config");
 
 const app = express();
 app.use(function(req, res, next) {
-  // res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "*");
   const allowedOrigins = [
   "http://192.168.1.178:8081", 
   "http://192.168.1.178:8082", 
