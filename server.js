@@ -28,16 +28,16 @@ const app = express();
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    // [
+    [
     "http://192.168.1.178:8081", 
     "http://192.168.1.178:8082", 
     "http://localhost:8081", 
     "http://localhost:8082", 
-    "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
+    "https://maps.googleapis.com/maps/api/js?key=",
     "https://benevolent-jalebi-b22329.netlify.app",
     "https://dormate.netlify.app",
     "https://dormate-app.onrender.com"
-    // ]
+    ]
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
