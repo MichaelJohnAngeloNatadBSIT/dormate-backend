@@ -91,7 +91,6 @@ exports.addDormImages = async (req, res) => {
     //image uploading
     await upload(req, res).then();
     let file_array = [];
-    console.log(req.files);
 
     for (let i = 0; i < req.files.length; i++) {
       var dormLink = baseUrl + req.files[i].filename;

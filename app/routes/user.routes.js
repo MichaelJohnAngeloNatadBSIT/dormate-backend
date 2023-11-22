@@ -31,9 +31,9 @@ module.exports = function(app) {
   app.put("/api/user/update_user_details/:id", controller.updateUser);
   app.put("/api/user/change_password/:id", controller.changePassword);
   app.get("/api/user/files", controller.getListFiles);
-  app.get("/api/user/files/:name", controller.download);
+  // app.get("/api/user/files/:name", controller.download);
   app.get("/api/user/:id", controller.retrieveUser);
-  app.get("/api/user_image/:name", controller.download);
+  app.get("/api/user/user_image/:name", controller.download);
 
   // return app.use("/", router);
 };

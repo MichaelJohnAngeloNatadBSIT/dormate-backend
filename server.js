@@ -16,21 +16,41 @@ const io = require('socket.io')(http, {
 
 global.__basedir = __dirname;
 
-var corsOptions = {
-  origin: [
-    "http://192.168.1.178:8081", 
-    "http://192.168.1.178:8082", 
-    "http://localhost:8081", 
-    "http://localhost:8082", 
-    "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
-    "https://benevolent-jalebi-b22329.netlify.app",
-    "https://dormate.netlify.app",
-  ],
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-  credentials: true
-};
+// var corsOptions = {
+//   origin: [
+//     "http://192.168.1.178:8081", 
+//     "http://192.168.1.178:8082", 
+//     "http://localhost:8081", 
+//     "http://localhost:8082", 
+//     "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
+//     "https://benevolent-jalebi-b22329.netlify.app",
+//     "https://dormate.netlify.app",
+//   ],
+//   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+//   credentials: true
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use(function(req, res, next) {
+  // res.header("Access-Control-Allow-Origin", "*");
+  const allowedOrigins = ["http://192.168.1.178:8081", 
+  "http://192.168.1.178:8082", 
+  "http://localhost:8081", 
+  "http://localhost:8082", 
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
+  "https://benevolent-jalebi-b22329.netlify.app",
+  "https://dormate.netlify.app",
+];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Access-Control-Allow-credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+  next();
+});
 
 // const initRoutes = require("./app/routes");
 // initRoutes(app); 

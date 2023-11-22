@@ -9,7 +9,7 @@ const url = dbConfig.url;
 
 // const baseUrl = "http://localhost:8080/user_image/";
 
-const baseUrl = "http://192.168.1.178:8080/user_image/";
+const baseUrl = "http://192.168.1.178:8080/api/user/user_image/";
 
 const mongoClient = new MongoClient(url);
 
@@ -48,6 +48,8 @@ exports.updateUserImage = async (req, res) => {
     var userImage = baseUrl + req.file.filename;
     var imageId = req.file.id;
     image_id_string = imageId.toString();
+
+    console.log(userImage);
 
     //updates user_image field
     User.findByIdAndUpdate(
