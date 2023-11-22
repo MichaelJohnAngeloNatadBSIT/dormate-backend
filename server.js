@@ -26,6 +26,7 @@ var corsOptions = {
     "https://benevolent-jalebi-b22329.netlify.app",
     "https://dormate.netlify.app",
   ],
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   credentials: true
 };
 
