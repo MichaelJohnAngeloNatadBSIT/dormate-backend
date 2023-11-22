@@ -132,6 +132,7 @@ exports.signout = async (req, res) => {
   try {
     req.session = null;
     return res.status(200).send({ message: "You've been signed out!" });
+    console.log("test log out");
   } catch (err) {
     this.next(err);
   }
