@@ -4,9 +4,10 @@ const cookieSession = require("cookie-session");
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
-app.use(function(req, res, next) {
+app.use(cors(function(req, res, next) {
   // res.header("Access-Control-Allow-Origin", "*");
-  const allowedOrigins = ["http://192.168.1.178:8081", 
+  const allowedOrigins = [
+  "http://192.168.1.178:8081", 
   "http://192.168.1.178:8082", 
   "http://localhost:8081", 
   "http://localhost:8082", 
@@ -22,7 +23,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-credentials", true);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
   next();
-});
+}));
 
 
 const http = require('http').createServer(app);
