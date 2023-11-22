@@ -17,7 +17,14 @@ const io = require('socket.io')(http, {
 global.__basedir = __dirname;
 
 var corsOptions = {
-  origin: ["http://192.168.1.178:8081", "http://192.168.1.178:8082", "http://localhost:8081", "http://localhost:8082", "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk"],
+  origin: [
+    "http://192.168.1.178:8081", 
+    "http://192.168.1.178:8082", 
+    "http://localhost:8081", 
+    "http://localhost:8082", 
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
+    "https://benevolent-jalebi-b22329.netlify.app",
+  ],
   credentials: true
 };
 

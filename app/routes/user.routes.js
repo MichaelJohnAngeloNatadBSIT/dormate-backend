@@ -26,14 +26,14 @@ module.exports = function(app) {
     controller.adminBoard
   );
 
-  app.put("/user/update_user_image/:id", controller.updateUserImage);
-  app.put("/user/update_valid_id/:id", controller.updateValidId);
-  app.put("/user/update_user_details/:id", controller.updateUser);
-  app.put("/user/change_password/:id", controller.changePassword);
-  app.get("/user/files", controller.getListFiles);
-  app.get("/user/files/:name", controller.download);
-  app.get("/user/:id", controller.retrieveUser);
-  app.get("/user_image/:name", controller.download);
+  app.put("/api/user/update_user_image/:id", controller.updateUserImage);
+  app.put("/api/user/update_valid_id/:id", controller.updateValidId);
+  app.put("/api/user/update_user_details/:id", controller.updateUser);
+  app.put("/api/user/change_password/:id", controller.changePassword);
+  app.get("/api/user/files", controller.getListFiles);
+  app.get("/api/user/files/:name", controller.download);
+  app.get("/api/user/:id", controller.retrieveUser);
+  app.get("/api/user_image/:name", controller.download);
 
   // return app.use("/", router);
 };
