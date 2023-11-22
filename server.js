@@ -36,6 +36,7 @@ app.use((req, res, next) => {
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
     "https://benevolent-jalebi-b22329.netlify.app",
     "https://dormate.netlify.app",
+    "https://dormate-app.onrender.com"
     // ]
   );
   res.setHeader(
