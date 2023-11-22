@@ -1,5 +1,5 @@
 module.exports = {
-    url: "mongodb://localhost:27017/",
+    url: "mongodb+srv://angelonatad22:j2xroMaxp8cSfQEr@dormate.u7iebjw.mongodb.net/",
     HOST: "0.0.0.0",
     PORT: 27017,
     database: "dormate_db",
@@ -9,4 +9,6 @@ module.exports = {
     DB: "dormate_db"
   };
 
-  //DB HOST: "0.0.0.0",
+  //DB HOST: "0.0.0.0", 
+
+  //mongodb+srv://angelonatad22:j2xroMaxp8cSfQEr@dormate.u7iebjw.mongodb.net/

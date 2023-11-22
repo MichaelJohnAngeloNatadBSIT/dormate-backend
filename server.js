@@ -80,9 +80,10 @@ http.listen( PORT, () => {
 
 const db = require("./app/models");
 const Role = db.role;
-
+//mongodb+srv://angelonatad22:j2xroMaxp8cSfQEr@dormate.u7iebjw.mongodb.net/ 
+//mongodb://${dbConfig.HOST}:${dbConfig.PORT}
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect(`mongodb+srv://angelonatad22:j2xroMaxp8cSfQEr@dormate.u7iebjw.mongodb.net/${dbConfig.DB}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
