@@ -6,7 +6,8 @@ module.exports = {
     imgBucketUser: "user_photos",
     imgBucketDorm: "dorm_photos",
     imgBucketCertificate: "certificate_photos",
-    DB: "dormate_db"
+    DB: "dormate_db",
+    PASS: "j2xroMaxp8cSfQEr"
   };
 
   //DB HOST: "0.0.0.0", 
