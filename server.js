@@ -28,7 +28,8 @@ var corsOptions = {
     "https://dormate-admin.netlify.app/"
   ],
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
-  credentials: true
+  credentials: true,
+  origin: true,
 };
 
 app.use(cors(corsOptions));
