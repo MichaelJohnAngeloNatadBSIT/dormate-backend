@@ -24,7 +24,8 @@ var corsOptions = {
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9iFumJZl7P6Y9uITdlTAtGNGNf8P3Exk",
     "https://benevolent-jalebi-b22329.netlify.app",
     "https://dormate.netlify.app",
-    "https://dormate-app.onrender.com/"
+    "https://dormate-app.onrender.com/",
+    "https://dormate-admin.netlify.app/"
   ],
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   credentials: true
