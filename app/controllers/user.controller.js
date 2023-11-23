@@ -8,8 +8,7 @@ var bcrypt = require("bcryptjs");
 const url = dbConfig.url;
 
 // const baseUrl = "http://localhost:8080/user_image/";
-
-// const baseUrl = "http://192.168.1.178:8080/api/user/user_image/"; 
+// const baseUrl = "http://192.168.1.178:8080/api/user/user_image/";
 const baseUrl = "https://dormate-app.onrender.com/api/user/user_image/";
 
 const mongoClient = new MongoClient(url);

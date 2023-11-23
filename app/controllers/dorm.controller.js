@@ -11,10 +11,13 @@ const GridFSBucket = require("mongodb").GridFSBucket;
 const url = dbConfig.url;
 
 // const baseUrl = "http://localhost:8080/api/dorm/dorm_images/";
-// const certBaseUrl = "http://localhost:8080/api/dorm/dorm_images/certificate/"
+// const certBaseUrl = "http://localhost:8080/api/dorm/dorm_images/certificate/" https://dormate-app.onrender.com
 
-const baseUrl = "http://192.168.1.178:8080/api/dorm/dorm_images/";
-const certBaseUrl = "http://192.168.1.178:8080/api/dorm/dorm_images/certificate/"
+// const baseUrl = "http://192.168.1.178:8080/api/dorm/dorm_images/";
+// const certBaseUrl = "http://192.168.1.178:8080/api/dorm/dorm_images/certificate/"
+
+const baseUrl = "https://dormate-app.onrender.com/api/dorm/dorm_images/";
+const certBaseUrl = "https://dormate-app.onrender.com/api/dorm/dorm_images/certificate/"
 
 const mongoClient = new MongoClient(url);
 
