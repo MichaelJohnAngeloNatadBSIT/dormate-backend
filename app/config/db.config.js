@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv-extended').load();
 module.exports = {
     url: process.env.MONGO_URL,
     HOST: "0.0.0.0",
