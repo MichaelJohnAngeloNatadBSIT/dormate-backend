@@ -10,7 +10,3 @@ module.exports = {
     DB: process.env.DATABASE,
     PASS: process.env.PASS
   };
-
-  //DB HOST: "0.0.0.0", 
-
-  //mongodb+srv://angelonatad22:j2xroMaxp8cSfQEr@dormate.u7iebjw.mongodb.net/

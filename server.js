@@ -94,7 +94,7 @@ const Role = db.role;
 //mongodb+srv://angelonatad22:j2xroMaxp8cSfQEr@dormate.u7iebjw.mongodb.net/ 
 //mongodb://${dbConfig.HOST}:${dbConfig.PORT}
 db.mongoose
-  .connect(`mongodb+srv://angelonatad22:${dbConfig.PASS}@dormate.u7iebjw.mongodb.net/${dbConfig.DB}`, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
