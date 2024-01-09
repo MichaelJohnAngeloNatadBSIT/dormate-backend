@@ -1,7 +1,6 @@
 require('dotenv').config({path:__dirname+'/./../../.env'})
 module.exports = {
-    url: process.env.MONGO_URL_PROD,
-    dev_url: process.env.MONGO_URL_DEV,
+    url: process.env.MONGO_URL,
     HOST: "0.0.0.0",
     PORT: process.env.PORT,
     database: process.env.DATABASE,
