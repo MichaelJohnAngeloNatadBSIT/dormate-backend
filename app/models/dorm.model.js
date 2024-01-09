@@ -13,6 +13,7 @@ module.exports = (mongoose) => {
         bedroom: Number,
         bathroom: Number,
         rent: Number,
+        vacancy: Number,
         for_rent: Boolean,
         publish: Boolean,
         contact_number: String,
@@ -28,6 +29,7 @@ module.exports = (mongoose) => {
         mayor_permit_image: String,
         bfp_permit_image: String,
         sanitary_permit_image: String,
+
       },
       { timestamps: true }
     )

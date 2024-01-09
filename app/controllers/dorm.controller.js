@@ -41,6 +41,7 @@ exports.create = (req, res) => {
     lessor: req.body.lessor,
     bedroom: req.body.bedroom,
     bathroom: req.body.bathroom,
+    vacancy: req.body.vacancy,
     rent: req.body.rent,
     contact_number: req.body.contact_number,
     username: req.body.username,
@@ -67,13 +68,60 @@ exports.create = (req, res) => {
     });
 };
 
+// // Update a Dorm by the id in the request
+// exports.update = (req, res) => {
+//   if (!req.body) {
+//     return res.status(400).send({
+//       message: "Dorm information to update can not be empty!"
+//     });
+//   }
+//   const id = req.params.id;
+
+//   Dorm.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+//     .then((data) => {
+//       if (!data) {
+//         res.status(404).send({
+//           message: `Cannot update Dormitory with id=${id}. Maybe Dormitory was not found!`,
+//         });
+//       } else res.send({ message: "Dormitory was updated successfully." });
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message: "Error updating Dormitory with id=" + id,
+//       });
+//     });
+// };
+
+// Delete a Dormitory with the specified id in the request
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  Dorm.findByIdAndRemove(id)
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Dormitory with id=${id}. Maybe Dormitory was not found!`,
+        });
+      } else {
+        res.send({
+          message: "Dormitory was deleted successfully!",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete Dormitory with id=" + id,
+      });
+    });
+};
+
+//updates dorm by id
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
       message: "Dorm information to update can not be empty!"
     });
   }
-
   const id = req.params.id;
 
   Dorm.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
@@ -569,7 +617,7 @@ exports.findAllApproved = (req, res) => {
     });
 };
 
-
+//find all approved dorm of user
 exports.findAllApprovedDormByUser = (req, res) => {
   var id = req.params.id
   var condition = { 
@@ -608,48 +656,6 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a Dorm by the id in the request
-exports.update = (req, res) => {
-  const id = req.params.id;
-
-  Dorm.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Dormitory with id=${id}. Maybe Dormitory was not found!`,
-        });
-      } else res.send({ message: "Dormitory was updated successfully." });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error updating Dormitory with id=" + id,
-      });
-    });
-};
-
-// Delete a Dormitory with the specified id in the request
-exports.delete = (req, res) => {
-  const id = req.params.id;
-
-  Dorm.findByIdAndRemove(id)
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot delete Dormitory with id=${id}. Maybe Dormitory was not found!`,
-        });
-      } else {
-        res.send({
-          message: "Dormitory was deleted successfully!",
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Could not delete Dormitory with id=" + id,
-      });
-    });
-};
-
 // Delete all Dorm from the database.
 // exports.deleteAll = (req, res) => {
 //   Dorm.deleteMany({})
@@ -680,6 +686,7 @@ exports.findAllForRent = (req, res) => {
     });
 };
 
+//find all posted dorm by user that is for approval of admin
 exports.findAllForApproval = (req, res) => {
   const id = req.params.id;
   Dorm.find({ user_id: id, published: false })
