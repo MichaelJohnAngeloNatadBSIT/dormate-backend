@@ -153,39 +153,39 @@ exports.updateSchedule = (req, res) => {
   const id = req.params.id;
 
   Schedule.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
+    .then((scheduleData) => {
+      if (!scheduleData) {
+        return res.status(404).send({
           message: `Cannot update Schedule with id=${id}. Maybe Schedule was not found!`,
         });
-      } else res.send({ message: "Schedule was updated successfully." });
+      }
+
+      // Increment the visit counter of the Dorm
+      var incrementValue = req.body.visit_counter ? req.body.visit_counter + 1 : 1;
+      var dormId = req.body.dorm_id;
+
+      return Dorm.findByIdAndUpdate(
+        dormId,
+        { visit_counter: incrementValue },
+        { useFindAndModify: false, upsert: true }
+      );
+    })
+    .then((dormData) => {
+      if (!dormData) {
+        return res.status(404).send({
+          message: `Cannot update Dorm with id=${dormId}. Maybe Dorm was not found!`,
+        });
+      }
+
+      res.send({ message: "Schedule and Dorm were updated successfully." });
     })
     .catch((err) => {
       res.status(500).send({
         message: "Error updating Schedule with id=" + id,
       });
     });
-
-    const incrementValue = req.body.visit_counter || 1;
-
-    Dorm.findByIdAndUpdate(
-      req.body.dorm_id,
-      { $inc: { visit_counter: incrementValue } },
-      { useFindAndModify: false, upsert: true, }
-    )
-    .then(data => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`
-        });
-      } else res.send({ message: "Dorm was updated successfully." });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error updating Dorm with id=" + id
-      });
-    });
 };
+
 
 exports.deleteSchedule = (req, res) => {
   const id = req.params.id;
