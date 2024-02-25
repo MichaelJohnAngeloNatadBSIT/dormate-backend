@@ -31,7 +31,7 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
-
+  const visit_counter_val = 0;
   // Create a Dorm
   const dormitory = new Dorm({
     user_id: req.body.user_id,
@@ -48,6 +48,7 @@ exports.create = (req, res) => {
     user_image: req.body.user_image,
     for_rent: req.body.for_rent ? req.body.for_rent : false,
     dorm_images: req.body.dorm_images,
+    visit_counter: visit_counter_val,
     publish: false,
   });
 
