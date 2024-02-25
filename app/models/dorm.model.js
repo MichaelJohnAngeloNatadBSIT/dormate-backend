@@ -19,6 +19,7 @@ module.exports = (mongoose) => {
         contact_number: String,
         username: String,
         user_image: String,
+        visit_counter: Number,
         dorm_images: [
           {
             type: String,

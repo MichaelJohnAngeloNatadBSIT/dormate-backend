@@ -1,5 +1,6 @@
 const db = require("../models");
 const Schedule = db.schedule;
+const Dorm = db.dormitory;
 
 // Create and Save a new schedule
 exports.createSchedule = (req, res) => {
@@ -33,6 +34,25 @@ exports.createSchedule = (req, res) => {
         message:
           err.message ||
           "Some error occurred while creating the Schedule of visit.",
+      });
+    });
+    const incrementValue = req.body.visit_counter || 1;
+
+    Dorm.findByIdAndUpdate(
+      req.body.dorm_id,
+      { $inc: { visit_counter: incrementValue } },
+      { useFindAndModify: false }
+    )
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`
+        });
+      } else res.send({ message: "Dorm was updated successfully." });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Dorm with id=" + id
       });
     });
 };
