@@ -36,4 +36,5 @@ module.exports = function (app) {
   app.delete("/api/admin/delete_dorm/:id", controller.deleteDormById);
 
   app.get("/api/admin/all_schedule", controller.retrieveAllSchedules);
+  app.get("/api/admin/count_schedule", controller.countSchedules);
 };
