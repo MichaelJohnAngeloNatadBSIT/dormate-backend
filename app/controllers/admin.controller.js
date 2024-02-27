@@ -3,10 +3,12 @@ const db = require("../models");
 const Admin = db.admin;
 const Role = db.role;
 const User = db.user;
+const Schedule = db.schedule;
 const Dorm = db.dormitory;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+
 
 exports.signup = (req, res) => {
   const admin = new Admin({
@@ -346,6 +348,21 @@ exports.deleteUserById = (req, res) => {
       res.status(500).send({
         message: "Could not delete User with id=" + id,
       });
+    });
+};
+
+// Retrieve All User
+exports.retrieveAllSchedules = (req, res) => {
+  const id = req.params.id;
+
+  Schedule.find()
+    .then((data) => {
+      if (!data)
+        res.status(404).send({ message: "There are currently no user."});
+      else res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: "Error retrieving User" });
     });
 };
 

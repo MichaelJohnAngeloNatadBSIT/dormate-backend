@@ -33,5 +33,7 @@ module.exports = function (app) {
   app.get("/api/admin/find_one/:id", controller.findOne);
   app.post("/api/admin/create_dorm", controller.createDorm);
   app.put("/api/admin/update_dorm/:id", controller.updateDorm)
-  app.delete("/api/admin/delete_dorm/:id", controller.deleteDormById)
+  app.delete("/api/admin/delete_dorm/:id", controller.deleteDormById);
+
+  app.get("/api/admin/all_schedule", controller.retrieveAllSchedules);
 };
