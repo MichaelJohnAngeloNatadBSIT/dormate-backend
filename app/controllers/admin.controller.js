@@ -366,6 +366,16 @@ exports.retrieveAllSchedules = (req, res) => {
     });
 };
 
+exports.countSchedules = (req, res) => {
+  Schedule.countDocuments().then((data) => {
+  if (!data)
+      res.status(404).send({ message: "There are currently no dorm."});
+  else res.status(200).send({data});
+  })
+  .catch((err) => {
+    res.status(500).send({ message: "Error retrieving count of Dorms" });
+  });;
+}
 
 
 
