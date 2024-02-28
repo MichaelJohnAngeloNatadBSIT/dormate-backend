@@ -300,13 +300,13 @@ exports.findOneUser = (req, res) => {
   User.findById(id)
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "Not found Dormitory with id " + id });
+        res.status(404).send({ message: "Not found User with id " + id });
       else res.send(data);
     })
     .catch((err) => {
       res
         .status(500)
-        .send({ message: "Error retrieving Dormitory with id=" + id });
+        .send({ message: "Error retrieving User with id=" + id });
     });
 };
 
