@@ -24,13 +24,14 @@ module.exports = function (app) {
 
   app.get("/api/admin/all_user", controller.retrieveAllUser);
   app.get("/api/admin/count_user", controller.countUser);
-  app.put("/api/admin/update_user/:id", controller.updateUser)
-  app.delete("/api/admin/delete_user/:id", controller.deleteUserById)
+  app.put("/api/admin/update_user/:id", controller.updateUser);
+  app.delete("/api/admin/delete_user/:id", controller.deleteUserById);
+  app.get("/api/admin/find_one_user/:id", controller.findOneUser);
 
   app.get("/api/admin/all_dorm", controller.retrieveAllDorm);
   app.get("/api/admin/count_dorm", controller.countDorm);
   app.get("/api/admin/count_dorm_approved", controller.countDormApproved);
-  app.get("/api/admin/find_one/:id", controller.findOne);
+  app.get("/api/admin/find_one_dorm/:id", controller.findOne);
   app.post("/api/admin/create_dorm", controller.createDorm);
   app.put("/api/admin/update_dorm/:id", controller.updateDorm)
   app.delete("/api/admin/delete_dorm/:id", controller.deleteDormById);

@@ -294,6 +294,21 @@ exports.retrieveAllUser = (req, res) => {
       res.status(500).send({ message: "Error retrieving User" });
     });
 };
+exports.findOneUser = (req, res) => {
+  const id = req.params.id;
+
+  User.findById(id)
+    .then((data) => {
+      if (!data)
+        res.status(404).send({ message: "Not found Dormitory with id " + id });
+      else res.send(data);
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Dormitory with id=" + id });
+    });
+};
 
 exports.countUser = (req, res) => {
   User.countDocuments().then((data) => {
