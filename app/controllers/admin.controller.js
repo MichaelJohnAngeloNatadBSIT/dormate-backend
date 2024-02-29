@@ -83,7 +83,7 @@ exports.signin = (req, res) => {
       }
 
       if (!user) {
-        return res.status(404).send({ message: "Username or Password does not match" });
+        return res.status(400).send({ message: "Username or Password does not match" });
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -184,7 +184,7 @@ exports.findOne = (req, res) => {
   Dorm.findById(id)
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "Not found Dormitory with id " + id });
+        res.status(400).send({ message: "Not found Dormitory with id " + id });
       else res.send(data);
     })
     .catch((err) => {
@@ -199,7 +199,7 @@ exports.retrieveAllDorm = (req, res) => {
   Dorm.find()
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "There are currently no dorm."});
+        res.status(400).send({ message: "There are currently no dorm."});
       else res.send(data);
     })
     .catch((err) => {
@@ -210,7 +210,7 @@ exports.retrieveAllDorm = (req, res) => {
 exports.countDorm = (req, res) => {
   Dorm.countDocuments().then((data) => {
   if (!data)
-      res.status(404).send({ message: "There are currently no dorm."});
+      res.status(400).send({ message: "There are currently no dorm."});
   else res.status(200).send({data});
   })
   .catch((err) => {
@@ -224,7 +224,7 @@ exports.countDormApproved = (req, res) => {
   };
   Dorm.find(condition).countDocuments().then((data) => {
   if (!data)
-      res.status(404).send({ message: "There are currently no dorm."});
+      res.status(400).send({ message: "There are currently no dorm."});
   else res.status(200).send({data});
   })
   .catch((err) => {
@@ -244,7 +244,7 @@ exports.updateDorm = (req, res) => {
   Dorm.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
-        res.status(404).send({
+        res.status(400).send({
           message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`
         });
       } else res.send({ message: "Dorm was updated successfully." });
@@ -263,7 +263,7 @@ exports.deleteDormById = (req, res) => {
   Dorm.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(400).send({
           message: `Cannot delete Dormitory with id=${id}. Maybe Dormitory was not found!`,
         });
       } else {
@@ -287,7 +287,7 @@ exports.retrieveAllUser = (req, res) => {
   User.find()
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "There are currently no user."});
+        res.status(400).send({ message: "There are currently no user."});
       else res.send(data);
     })
     .catch((err) => {
@@ -300,7 +300,7 @@ exports.findOneUser = (req, res) => {
   User.findById(id)
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "Not found User with id " + id });
+        res.status(400).send({ message: "Not found User with id " + id });
       else res.send(data);
     })
     .catch((err) => {
@@ -313,7 +313,7 @@ exports.findOneUser = (req, res) => {
 exports.countUser = (req, res) => {
   User.countDocuments().then((data) => {
   if (!data)
-      res.status(404).send({ message: "There are currently no user."});
+      res.status(400).send({ message: "There are currently no user."});
   else res.status(200).send({data});
   })
   .catch((err) => {
@@ -329,7 +329,7 @@ exports.updateUser = (req, res) => {
   User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(400).send({
           message: `Cannot update User with id=${id}. Maybe User was not found!`,
         });
       } else res.send({ message: "User was updated successfully." });
@@ -350,7 +350,7 @@ exports.deleteUserById = (req, res) => {
   User.findByIdAndRemove(id)
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(400).send({
           message: `Cannot delete User with id=${id}. Maybe User was not found!`,
         });
       } else {
@@ -373,7 +373,7 @@ exports.retrieveAllSchedules = (req, res) => {
   Schedule.find()
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "There are currently no user."});
+        res.status(400).send({ message: "There are currently no user."});
       else res.send(data);
     })
     .catch((err) => {
@@ -384,7 +384,7 @@ exports.retrieveAllSchedules = (req, res) => {
 exports.countSchedules = (req, res) => {
   Schedule.countDocuments().then((data) => {
   if (!data)
-      res.status(404).send({ message: "There are currently no dorm."});
+      res.status(400).send({ message: "There are currently no dorm."});
   else res.status(200).send({data});
   })
   .catch((err) => {
