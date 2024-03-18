@@ -59,6 +59,7 @@ exports.create = (req, res) => {
       console.log(data);
       res.send({
         message: "Dormitory post was created successfully.",
+        data
       });
     })
     .catch((err) => {
