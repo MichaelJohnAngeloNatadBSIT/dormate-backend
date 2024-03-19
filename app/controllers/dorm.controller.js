@@ -586,9 +586,12 @@ exports.downloadCert = async (req, res) => {
 
 // Retrieve all Dorm from the database.
 exports.findAll = (req, res) => {
+  var condition = { 
+    publish: true
+  };
   const title = req.query.title;
 
-  Dorm.find({ $or: [ { title: {$regex: new RegExp(title), $options: "i" } }, { address: {$regex: new RegExp(title), $options: "i" } } ] })
+  Dorm.find({ $or: [ { title: {$regex: new RegExp(title), $options: "i" } }, { address: {$regex: new RegExp(title), $options: "i" } } ] }, {condition})
     .then((data) => {
       res.send(data);
     })
@@ -602,6 +605,25 @@ exports.findAll = (req, res) => {
 
 //find all dorm posts that are approved
 exports.findAllApproved = (req, res) => {
+  var condition = { 
+      publish: true
+    };
+
+  Dorm.find(condition)
+    .then((data) => {
+      res.send(data);
+
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving dormitory.",
+      });
+    });
+};
+
+//find all dorm posts that are approved
+exports.findAllApprovedTitle = (req, res) => {
   var condition = { 
       publish: true
     };
