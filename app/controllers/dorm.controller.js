@@ -591,7 +591,7 @@ exports.findAll = (req, res) => {
   };
   const title = req.query.title;
 
-  Dorm.find({ $or: [ { title: {$regex: new RegExp(title), $options: "i" } }, { address: {$regex: new RegExp(title), $options: "i" } } ] })
+  Dorm.find({ $and: [{ $or: [{ title: { $regex: new RegExp(title), $options: "i" } }, { address: { $regex: new RegExp(title), $options: "i" } }] }, condition] })
     .then((data) => {
       res.send(data);
     })
@@ -602,6 +602,7 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
 
 //find all dorm posts that are approved
 exports.findAllApproved = (req, res) => {
