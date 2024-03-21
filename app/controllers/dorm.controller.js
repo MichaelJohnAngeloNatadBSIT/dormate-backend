@@ -591,7 +591,7 @@ exports.findAll = (req, res) => {
   };
   const title = req.query.title;
 
-  Dorm.find({ $and: [{ $or: [{ title: { $regex: new RegExp(title), $options: "i" } }, { address: { $regex: new RegExp(title), $options: "i" } }] }, condition] })
+  Dorm.find({ $and: [{ $or: [{ title: { $regex: new RegExp(title), $options: "i" } }, { address: { $regex: new RegExp(title), $options: "i" } }, { rent: { $regex: new RegExp(title.minValue), $options: "i" } }, { rent: { $regex: new RegExp(title.maxValue), $options: "i" } }, { rent: { $regex: new RegExp(title), $options: "i" } } ] }, condition] })
     .then((data) => {
       res.send(data);
     })
