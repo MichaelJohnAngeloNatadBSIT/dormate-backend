@@ -603,6 +603,45 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findAllWithRentLowToHigh = (req, res) => {
+  var condition = { 
+    publish: true
+  };
+  const title = req.query.title;
+
+  Dorm.find({ $and: [{ $or: [{ title: { $regex: new RegExp(title), $options: "i" } }, { address: { $regex: new RegExp(title), $options: "i" } }] }, condition] })
+    .sort({ rent: -1 }) // Sort by rent field in descending order
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving dormitory.",
+      });
+    });
+};
+
+exports.findAllWithRentHighToLow = (req, res) => {
+  var condition = { 
+    publish: true
+  };
+  const title = req.query.title;
+
+  Dorm.find({ $and: [{ $or: [{ title: { $regex: new RegExp(title), $options: "i" } }, { address: { $regex: new RegExp(title), $options: "i" } }] }, condition] })
+    .sort({ rent: 1 }) // Sort by rent field in descending order
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving dormitory.",
+      });
+    });
+};
+
+
 
 //find all dorm posts that are approved
 exports.findAllApproved = (req, res) => {
