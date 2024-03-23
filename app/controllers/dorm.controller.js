@@ -603,7 +603,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-exports.findAllWithRentLowToHigh = (req, res) => {
+exports.findAllWithRentHighToLow = (req, res) => {
   var condition = { 
     publish: true
   };
@@ -622,7 +622,7 @@ exports.findAllWithRentLowToHigh = (req, res) => {
     });
 };
 
-exports.findAllWithRentHighToLow = (req, res) => {
+exports.findAllWithRentLowToHigh = (req, res) => {
   var condition = { 
     publish: true
   };

@@ -10,10 +10,10 @@ module.exports = app => {
   router.get("/", dormitory.findAll);
 
   // Retrieve all Dormitory
-  router.get("/rent_low", dormitory.findAllWithRentLowToHigh);
+  router.get("/rent_high", dormitory.findAllWithRentLowToHigh);
 
   // Retrieve all Dormitory
-  router.get("/rent_high", dormitory.findAllWithRentHighToLow);
+  router.get("/rent_low", dormitory.findAllWithRentHighToLow);
 
   // Retrieve all Dormitory
   router.get("/find_all_approved", dormitory.findAllApproved);
