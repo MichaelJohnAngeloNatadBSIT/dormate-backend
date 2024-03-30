@@ -8,6 +8,7 @@ const Schedule = mongoose.model(
     landlord_id: String,
     tenant_id: String,
     schedule_date: Date,
+    schedule_time: String,
     approve_visit: Boolean,
     description: String,
     user_full_name: String,

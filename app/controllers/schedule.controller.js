@@ -16,6 +16,7 @@ exports.createSchedule = (req, res) => {
     landlord_id: req.body.landlord_id,
     tenant_id: req.body.tenant_id,
     schedule_date: req.body.schedule_date,
+    schedule_time: req.body.schedule_time,
     description: req.body.description,
     user_full_name: req.body.user_full_name,
     dorm_title: req.body.dorm_title,
