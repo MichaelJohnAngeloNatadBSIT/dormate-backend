@@ -3,6 +3,7 @@ const Dorm = db.dormitory;
 
 const upload = require("../middlewares/dormUpload");
 const uploadCert = require("../middlewares/certificateUpload");
+//const uploadCertPDF = require("../middlewares/certificateUploadPDF");
 const dbConfig = require("../config/db.config");
 
 const MongoClient = require("mongodb").MongoClient;

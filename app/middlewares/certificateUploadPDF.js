@@ -7,7 +7,7 @@ var storage = new GridFsStorage({
   url: dbConfig.url,
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
-    const match = ["image/png", "image/jpeg", "application/pdf"]; // Include PDF format
+    const match = ["file/pdf", "file/pdf"];
 
     if (match.indexOf(file.mimetype) === -1) {
       const filename = `${Date.now()}-certificate-${file.originalname}`;
@@ -21,6 +21,7 @@ var storage = new GridFsStorage({
   }
 });
 
-var uploadFiles = multer({ storage: storage }).single("file");
-var uploadFilesMiddleware = util.promisify(uploadFiles);
-module.exports = uploadFilesMiddleware;
+// var uploadFiles = multer({ storage: storage }).array("file", 10);
+var uploadFilesPDF = multer({ storage: storage }).single("file");
+var uploadFilesPDFMiddleware = util.promisify(uploadFilesPDF);
+module.exports = uploadFilesPDFMiddleware;
