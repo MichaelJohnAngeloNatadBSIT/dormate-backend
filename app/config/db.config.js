@@ -8,5 +8,7 @@ module.exports = {
     imgBucketDorm: "dorm_photos",
     imgBucketCertificate: "certificate_photos",
     DB: process.env.DATABASE,
-    PASS: process.env.PASS
+    PASS: process.env.PASS,
+    PAYMONGO_SECRET: process.env.PAYMONGO_SECRET,
+    PAYMONGO_PUBLIC: process.env.PAYMONGO_PUBLIC
   };

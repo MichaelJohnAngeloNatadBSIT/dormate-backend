@@ -2,8 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 const dbConfig = require("./app/config/db.config");
+const bodyParser = require('body-parser');
+
 
 const app = express();
+
+// Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const http = require('http').createServer(app);
 
@@ -77,6 +83,7 @@ require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/admin.routes')(app);
 require('./app/routes/schedule.routes')(app);
+require('./app/routes/payment.routes')(app);
 require('./app/routes/index')(app);
 
 
