@@ -51,6 +51,7 @@ exports.create = (req, res) => {
     dorm_images: req.body.dorm_images,
     visit_counter: visit_counter_val,
     publish: false,
+    payment_status: "unpaid",
   });
 
   // Save Dorm in the database

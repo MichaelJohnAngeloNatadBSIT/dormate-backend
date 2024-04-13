@@ -13,6 +13,7 @@ db.user = require("../models/user.model.js");
 db.admin = require("../models/admin.model.js");
 db.schedule = require("../models/schedule.model.js");
 db.role = require("../models/role.model.js");
+db.payment = require("../models/payment.model.js")(mongoose);
 db.ROLES = ["user", "admin", "landlord"];
 
 

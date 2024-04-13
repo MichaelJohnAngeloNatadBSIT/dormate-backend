@@ -30,6 +30,10 @@ module.exports = (mongoose) => {
         mayor_permit_image: String,
         bfp_permit_image: String,
         sanitary_permit_image: String,
+        payment_id: String,
+        payment_status: String,
+        payment_checkout_url: String,
+        payment_reference_number: String,
 
       },
       { timestamps: true }
