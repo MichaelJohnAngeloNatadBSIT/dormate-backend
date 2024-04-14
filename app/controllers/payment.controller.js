@@ -10,11 +10,11 @@ exports.createPayment = async (req, res) => {
         const dormId = paymentDetails.dorm_id;
 
         // Check if dormitory already has a payment_id
-        const existingDorm = await Dorm.findById(dormId);
-        if (existingDorm && existingDorm.payment_id) {
+        const data = await Dorm.findById(dormId);
+        if (data && data.payment_id) {
             return res.status(200).send({
                 message: "Dorm already has a payment associated with it.",
-                existingDorm
+                data
 
             });
         }
