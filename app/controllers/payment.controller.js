@@ -87,3 +87,25 @@ exports.createPayment = async (req, res) => {
     }
 };
 
+exports.getPayment = async (req, res) => {
+    const reference_number = req.body.payment_reference_number;
+    const url = `https://api.paymongo.com/v1/links/${reference_number}`;
+    const options = {
+        method: 'GET',
+        url: url,
+        headers: {
+          accept: 'application/json',
+          authorization: 'Basic c2tfdGVzdF9COFM3a3BoWEJlRkJwZnk4ZnZvVWZSaVU6'
+        }
+      };
+      
+      axios
+        .request(options)
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+}
+

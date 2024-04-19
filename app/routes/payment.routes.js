@@ -6,8 +6,11 @@ module.exports = app => {
     var router = require("express").Router();
     app.use(bodyParser.json());
   
-    // Retrieve all Dormitory
+    // Create a payment link then store info in db
     router.post("/create-payment", payment.createPayment);
+
+    // Retrieve payment 
+    router.get("/get-payment", payment.getPayment);
   
     app.use('/api/payment', router);
     };
