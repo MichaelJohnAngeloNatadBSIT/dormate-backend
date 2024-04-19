@@ -10,7 +10,7 @@ module.exports = app => {
     router.post("/create-payment", payment.createPayment);
 
     // Retrieve payment 
-    router.get("/get-payment", payment.getPayment);
+    router.get("/get-payment/:reference_number", payment.getPayment);
   
     app.use('/api/payment', router);
     };

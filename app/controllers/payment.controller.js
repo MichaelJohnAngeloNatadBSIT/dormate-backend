@@ -88,7 +88,7 @@ exports.createPayment = async (req, res) => {
 };
 
 exports.getPayment = async (req, res) => {
-    const reference_number = req.body.payment_reference_number;
+    const reference_number = req.params.reference_number;
     const url = `https://api.paymongo.com/v1/links/${reference_number}`;
     const options = {
         method: 'GET',
@@ -109,7 +109,7 @@ exports.getPayment = async (req, res) => {
         })
         .catch(function (error) {
             res.status(500).send({
-                message: error
+                message: error.message
             });
         });
 }
