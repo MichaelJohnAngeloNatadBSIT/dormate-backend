@@ -102,10 +102,15 @@ exports.getPayment = async (req, res) => {
       axios
         .request(options)
         .then(function (response) {
-          console.log(response.data);
+            res.send({
+                message: "Payment was retrieved successfully.",
+                data: response.data,
+            });
         })
         .catch(function (error) {
-          console.error(error);
+            res.status(500).send({
+                message: error
+            });
         });
 }
 
