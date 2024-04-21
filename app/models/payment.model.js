@@ -17,7 +17,6 @@ module.exports = (mongoose) => {
         email: String,
         name: String,
         phone: String,
-        status: String,
         createdAt: { type: Date, default: Date.now },
       },
       { timestamps: true }
