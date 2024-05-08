@@ -42,6 +42,7 @@ module.exports = app => {
   router.put("/add_bfp_image/:id", dormitory.addBfpImage);
   router.put("/add_mayor_permit_image/:id", dormitory.addMayorPermitImage);
   router.put("/add_sanitary_image/:id", dormitory.addSanitaryImage);
+  router.put("/add_tenant/:id", dormitory.addTenants);
 
   // router.post("/upload/dorm_images", dormitory.uploadFiles);
 

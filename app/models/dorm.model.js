@@ -1,20 +1,17 @@
 const { Schema } = require("mongoose");
 
-
-// Define schema for Tenant
-const tenantSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    // required: true
-  },
-  userID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to a User model if needed
-    // required: true
-  }
-});
-
 module.exports = (mongoose) => {
+  // Define schema for Tenant
+  const tenantSchema = new mongoose.Schema({
+    tenant_username: String,
+    tenant_user_id: String,
+    tenant_full_name: String,
+    tenant_contact_number: String,
+    tenant_address: String,
+    verified: Boolean,
+    approve_tenant: Boolean
+  });
+
   const Dormitory = mongoose.model(
     "dormitory",
     mongoose.Schema(
@@ -49,7 +46,6 @@ module.exports = (mongoose) => {
         payment_checkout_url: String,
         payment_reference_number: String,
         tenants: [tenantSchema],
-
       },
       { timestamps: true }
     )

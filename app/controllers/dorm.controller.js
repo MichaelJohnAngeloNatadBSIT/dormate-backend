@@ -143,6 +143,44 @@ exports.update = (req, res) => {
     });
 };
 
+exports.addTenants = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const newTenants = req.body.tenants;
+
+    // Find the dormitory by ID
+    const dorm = await Dorm.findById(id);
+
+    if (!dorm) {
+      return res.status(404).send({
+        message: `Dormitory not found with id ${id}.`
+      });
+    }
+
+    // Check if each new tenant's user_id already exists in the dormitory's tenants
+    for (const newTenant of newTenants) {
+      const existingTenant = dorm.tenants.find(tenant => tenant.tenant_user_id === newTenant.tenant_user_id);
+      if (existingTenant) {
+        console.log(`Tenant with user_id ${newTenant.tenant_user_id} already exists in the dormitory.`);
+        continue; // Skip adding existing tenant
+      }
+      // Add new tenant to the tenants array
+      dorm.tenants.push(newTenant);
+    }
+
+    // Save the updated dormitory
+    await dorm.save();
+
+    res.send({ message: "New tenants added to dormitory successfully." });
+  } catch (err) {
+    console.error("Error adding tenants to dormitory:", err);
+    res.status(500).send({
+      message: "Failed to add tenants to dormitory."
+    });
+  }
+};
+
+
 exports.addDormImages = async (req, res) => {
   const id = req.params.id;
   try {
