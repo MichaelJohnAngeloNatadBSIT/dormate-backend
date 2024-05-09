@@ -10,7 +10,9 @@ module.exports = (mongoose) => {
     tenant_address: String,
     verified: Boolean,
     approve_tenant: Boolean
-  });
+  },
+  { timestamps: true }
+  );
 
   const Dormitory = mongoose.model(
     "dormitory",
