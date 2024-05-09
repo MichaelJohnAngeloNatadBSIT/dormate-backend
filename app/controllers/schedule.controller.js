@@ -14,7 +14,11 @@ exports.createSchedule = (req, res) => {
   const schedule = new Schedule({
     dorm_id: req.body.dorm_id,
     landlord_id: req.body.landlord_id,
-    tenant_id: req.body.tenant_id,
+    tenant_user_id: req.body.tenant_id,
+    tenant_username: req.body.tenant_username,
+    tenant_full_name: req.body.tenant_full_name,
+    tenant_contact_number: req.body.tenant_contact_number,
+    tenant_address: req.body.tenant_address,
     schedule_date: req.body.schedule_date,
     schedule_time: req.body.schedule_time,
     description: req.body.description,

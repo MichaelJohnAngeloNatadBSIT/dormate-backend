@@ -16,6 +16,10 @@ const User = mongoose.model(
     verified: Boolean,
     valid_identification_image: String,
     valid_image_id: String,
+    dorm_id: String,
+    dorm_title: String,
+    dorm_landlord: String,
+    is_tenant: Boolean,
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
