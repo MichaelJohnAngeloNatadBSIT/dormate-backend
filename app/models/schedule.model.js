@@ -11,7 +11,7 @@ const Schedule = mongoose.model(
     tenant_full_name: String,
     tenant_contact_number: String,
     tenant_address: String,
-    verified: Boolean,
+    tenant_verified: Boolean,
     schedule_date: Date,
     schedule_time: String,
     approve_visit: Boolean,

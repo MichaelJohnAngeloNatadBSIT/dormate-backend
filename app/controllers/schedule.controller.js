@@ -19,6 +19,7 @@ exports.createSchedule = (req, res) => {
     tenant_full_name: req.body.tenant_full_name,
     tenant_contact_number: req.body.tenant_contact_number,
     tenant_address: req.body.tenant_address,
+    tenant_verified: req.body.tenant_verified,
     schedule_date: req.body.schedule_date,
     schedule_time: req.body.schedule_time,
     description: req.body.description,
