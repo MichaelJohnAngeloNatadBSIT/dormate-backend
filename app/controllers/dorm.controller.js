@@ -146,7 +146,7 @@ exports.update = (req, res) => {
 exports.addTenants = async (req, res) => {
   try {
     const id = req.params.id;
-    const newTenants = req.body.tenantData;
+    const newTenants = req.body.tenant;
 
     // Check if newTenants is an array
     if (!Array.isArray(newTenants)) {
