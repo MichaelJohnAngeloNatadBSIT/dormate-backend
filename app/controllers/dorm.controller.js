@@ -148,6 +148,13 @@ exports.addTenants = async (req, res) => {
     const id = req.params.id;
     const newTenants = req.body.tenantData;
 
+    // Check if newTenants is an array
+    if (!Array.isArray(newTenants)) {
+      return res.status(400).send({
+        message: "Invalid tenant data. Expected an array."
+      });
+    }
+
     // Find the dormitory by ID
     const dorm = await Dorm.findById(id);
 
@@ -179,6 +186,7 @@ exports.addTenants = async (req, res) => {
     });
   }
 };
+
 
 
 exports.addDormImages = async (req, res) => {
