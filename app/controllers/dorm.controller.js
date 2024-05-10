@@ -146,7 +146,7 @@ exports.update = (req, res) => {
 exports.addTenants = async (req, res) => {
   try {
     const id = req.params.id;
-    const newTenants = req.body.tenants;
+    const newTenants = req.body.tenantData;
 
     // Find the dormitory by ID
     const dorm = await Dorm.findById(id);

@@ -8,8 +8,7 @@ module.exports = (mongoose) => {
     tenant_full_name: String,
     tenant_contact_number: String,
     tenant_address: String,
-    verified: Boolean,
-    approve_tenant: Boolean
+    approve_tenant: Boolean 
   },
   { timestamps: true }
   );
