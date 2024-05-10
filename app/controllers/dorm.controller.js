@@ -147,6 +147,7 @@ exports.addTenants = async (req, res) => {
   try {
     const id = req.params.id;
     const newTenants = req.body.tenant;
+    console.log(newTenants);
 
     // Check if newTenants is an array
     if (!Array.isArray(newTenants)) {
