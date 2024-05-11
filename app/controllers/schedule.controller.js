@@ -81,7 +81,7 @@ exports.findAllScheduleLandlord = (req, res) => {
 //retrieve schedule by tenant id and if approved false for landlords
 exports.findAllScheduleTenant = (req, res) => {
   var condition = { 
-    tenant_id: req.params.id,
+    tenant_user_id: req.params.id,
     approve_visit: false
   };
   Schedule.find(condition)
@@ -118,7 +118,7 @@ exports.findAllScheduleLandlordApproved = (req, res) => {
 //retrieve schedule by landlord id and if approved true for landlords
 exports.findAllScheduleTenantApproved = (req, res) => {
   var condition = { 
-    tenant_id: req.params.id,
+    tenant_user_id: req.params.id,
     approve_visit: true
   };
   Schedule.find(condition)
