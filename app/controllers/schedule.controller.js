@@ -26,6 +26,7 @@ exports.createSchedule = (req, res) => {
     user_full_name: req.body.user_full_name,
     dorm_title: req.body.dorm_title,
     approve_visit: false,
+    is_accepted_tenant: false,
   });
   // Save schedule in the database
   schedule
@@ -99,7 +100,8 @@ exports.findAllScheduleTenant = (req, res) => {
 exports.findAllScheduleLandlordApproved = (req, res) => {
   var condition = { 
     landlord_id: req.params.id,
-    approve_visit: true
+    approve_visit: true,
+    is_accepted_tenant: false
   };
   Schedule.find(condition)
     .then((data) => {
