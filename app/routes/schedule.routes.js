@@ -10,6 +10,7 @@ module.exports = app => {
     app.get("/api/schedule/get_schedule_tenant/:id", schedule.findAllScheduleTenant);
     app.get("/api/schedule/get_schedule_approved_landlord/:id", schedule.findAllScheduleLandlordApproved);
     app.get("/api/schedule/get_schedule_approved_tenant/:id", schedule.findAllScheduleTenantApproved);
+    app.put("/api/schedule/update_schedule_only/:id", schedule.update);
     app.put("/api/schedule/update_schedule/:id", schedule.updateSchedule);
     app.delete("/api/schedule/delete_schedule/:id", schedule.deleteSchedule);
     };

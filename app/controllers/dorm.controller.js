@@ -481,6 +481,8 @@ exports.addSanitaryImage = async (req, res) => {
       message: `Error when trying upload image: ${error}`,
     });
   }
+
+
 };
 
 // exports.uploadFiles = async (req, res) => {

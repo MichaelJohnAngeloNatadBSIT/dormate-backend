@@ -149,6 +149,31 @@ exports.findOneSchedule = (req, res) => {
     });
 };
 
+exports.update = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Schedule information to update cannot be empty!",
+    });
+  }
+  
+  const id = req.params.id;
+
+  Schedule.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then((scheduleData) => {
+      if (!scheduleData) {
+        return res.status(404).send({
+          message: `Cannot update Schedule with id=${id}. Maybe Schedule was not found!`,
+        });
+      }
+      res.send({ message: "Schedule was updated successfully." });
+    })
+    .catch(err => {
+      return res.status(500).send({
+        message: `Error updating Schedule with id=${id}: ${err.message}`,
+      });
+    });
+};
+
 exports.updateSchedule = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
