@@ -58,7 +58,6 @@ exports.create = (req, res) => {
   dormitory
     .save(dormitory)
     .then((data) => {
-      console.log(data);
       res.send({
         message: "Dormitory post was created successfully.",
         data
@@ -147,14 +146,6 @@ exports.addTenants = async (req, res) => {
   try {
     const id = req.params.id;
     const newTenants = req.body;
-    console.log(newTenants);
-
-    // Check if newTenants is an array
-    if (!Array.isArray(newTenants)) {
-      return res.status(400).send({
-        message: "Invalid tenant data. Expected an array."
-      });
-    }
 
     // Find the dormitory by ID
     const dorm = await Dorm.findById(id);
@@ -169,7 +160,6 @@ exports.addTenants = async (req, res) => {
     for (const newTenant of newTenants) {
       const existingTenant = dorm.tenants.find(tenant => tenant.tenant_user_id === newTenant.tenant_user_id);
       if (existingTenant) {
-        console.log(`Tenant with user_id ${newTenant.tenant_user_id} already exists in the dormitory.`);
         continue; // Skip adding existing tenant
       }
       // Add new tenant to the tenants array
@@ -188,8 +178,6 @@ exports.addTenants = async (req, res) => {
   }
 };
 
-
-
 exports.addDormImages = async (req, res) => {
   const id = req.params.id;
   try {
@@ -202,7 +190,6 @@ exports.addDormImages = async (req, res) => {
 
       file_array.push(dormLink);
     }
-    console.log(file_array);
 
     if (req.files.length <= 0) {
       return res
@@ -222,7 +209,6 @@ exports.addDormImages = async (req, res) => {
             message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`,
           });
         }
-        console.log("Dorm was updated successfully.");
         res.send({ message: "Dorm was updated successfully." });
       })
       .catch((err) => {
@@ -231,11 +217,9 @@ exports.addDormImages = async (req, res) => {
             message:
               "Error updating Dorm with id=" + id + "Dorm ID is not valid",
           });
-          console.log("Error updating Dorm with id=" + id);
         }
       });
   } catch (error) {
-    console.log(error);
     if (error.code === "LIMIT_UNEXPECTED_FILE") {
       return res.status(400).send({
         message: "Too many files to upload.",
@@ -275,7 +259,6 @@ exports.addBusinessRegImage = async (req, res) => {
             message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`,
           });
         }
-        console.log("Dorm was updated successfully.");
         res.send({ message: "Dorm was updated successfully." });
       })
       .catch((err) => {
@@ -285,11 +268,9 @@ exports.addBusinessRegImage = async (req, res) => {
             message:
               "Error updating Dorm with id=" + id + "Dorm ID is not valid",
           });
-          console.log("Error updating Dorm with id=" + id);
         }
       });
   } catch (error) {
-    console.log(error);
     if (error.code === "LIMIT_UNEXPECTED_FILE") {
       return res.status(400).send({
         message: "Too many files to upload.",
@@ -328,7 +309,6 @@ exports.addBarangayClearanceImage = async (req, res) => {
             message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`,
           });
         }
-        console.log("Dorm was updated successfully.");
         res.send({ message: "Dorm was updated successfully." });
       })
       .catch((err) => {
@@ -338,11 +318,9 @@ exports.addBarangayClearanceImage = async (req, res) => {
             message:
               "Error updating Dorm with id=" + id + "Dorm ID is not valid",
           });
-          console.log("Error updating Dorm with id=" + id);
         }
       });
   } catch (error) {
-    console.log(error);
     if (error.code === "LIMIT_UNEXPECTED_FILE") {
       return res.status(400).send({
         message: "Too many files to upload.",
@@ -381,7 +359,6 @@ exports.addMayorPermitImage = async (req, res) => {
             message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`,
           });
         }
-        console.log("Dorm was updated successfully.");
         res.send({ message: "Dorm was updated successfully." });
       })
       .catch((err) => {
@@ -391,11 +368,9 @@ exports.addMayorPermitImage = async (req, res) => {
             message:
               "Error updating Dorm with id=" + id + "Dorm ID is not valid",
           });
-          console.log("Error updating Dorm with id=" + id);
         }
       });
   } catch (error) {
-    console.log(error);
     if (error.code === "LIMIT_UNEXPECTED_FILE") {
       return res.status(400).send({
         message: "Too many files to upload.",
@@ -434,7 +409,6 @@ exports.addBfpImage = async (req, res) => {
             message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`,
           });
         }
-        console.log("Dorm was updated successfully.");
         res.send({ message: "Dorm was updated successfully." });
       })
       .catch((err) => {
@@ -444,11 +418,9 @@ exports.addBfpImage = async (req, res) => {
             message:
               "Error updating Dorm with id=" + id + "Dorm ID is not valid",
           });
-          console.log("Error updating Dorm with id=" + id);
         }
       });
   } catch (error) {
-    console.log(error);
     if (error.code === "LIMIT_UNEXPECTED_FILE") {
       return res.status(400).send({
         message: "Too many files to upload.",
@@ -487,7 +459,6 @@ exports.addSanitaryImage = async (req, res) => {
             message: `Cannot update Dorm with id=${id}. Maybe Dorm was not found!`,
           });
         }
-        console.log("Dorm was updated successfully.");
         res.send({ message: "Dorm was updated successfully." });
       })
       .catch((err) => {
@@ -497,11 +468,9 @@ exports.addSanitaryImage = async (req, res) => {
             message:
               "Error updating Dorm with id=" + id + "Dorm ID is not valid",
           });
-          console.log("Error updating Dorm with id=" + id);
         }
       });
   } catch (error) {
-    console.log(error);
     if (error.code === "LIMIT_UNEXPECTED_FILE") {
       return res.status(400).send({
         message: "Too many files to upload.",
