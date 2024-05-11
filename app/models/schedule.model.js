@@ -17,6 +17,7 @@ const Schedule = mongoose.model(
     approve_visit: Boolean,
     description: String,
     dorm_title: String,
+    is_accepted_tenant: Boolean,
   },
   { timestamps: true }
   )
