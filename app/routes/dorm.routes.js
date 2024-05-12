@@ -33,8 +33,10 @@ module.exports = app => {
 
   // Delete a Dorm with id
   router.delete("/delete/:id", dormitory.delete);
+  router.delete("/evict_tenant/:id", dormitory.evictTenant);
 
   router.post("/create/", dormitory.create);
+  router.post("/add_tenant/:id", dormitory.addTenants);
 
   router.put("/add_images/:id", dormitory.addDormImages);
   router.put("/add_business_registration_image/:id", dormitory.addBusinessRegImage);
@@ -42,7 +44,7 @@ module.exports = app => {
   router.put("/add_bfp_image/:id", dormitory.addBfpImage);
   router.put("/add_mayor_permit_image/:id", dormitory.addMayorPermitImage);
   router.put("/add_sanitary_image/:id", dormitory.addSanitaryImage);
-  router.put("/add_tenant/:id", dormitory.addTenants);
+
 
   // router.post("/upload/dorm_images", dormitory.uploadFiles);
 

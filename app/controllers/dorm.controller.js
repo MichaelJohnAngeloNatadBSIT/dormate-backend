@@ -178,6 +178,40 @@ exports.addTenants = async (req, res) => {
   }
 };
 
+exports.evictTenant = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const newTenant = req.body;
+
+    // Find the dormitory by ID
+    const dorm = await Dorm.findById(id);
+
+    if (!dorm) {
+      return res.status(404).send({
+        message: `Dormitory not found with id ${id}.`
+      });
+    }
+
+    // Check if the new tenant's user_id already exists in the dormitory's tenants
+    const existingTenantIndex = dorm.tenants.findIndex(tenant => tenant.tenant_user_id === newTenant.tenant_user_id);
+    if (existingTenantIndex !== -1) {
+      // Remove the existing tenant with the same user_id
+      dorm.tenants.splice(existingTenantIndex, 1);
+    }
+
+    // Save the updated dormitory
+    await dorm.save();
+
+    res.send({ message: "Tenant evicted from dormitory successfully." });
+  } catch (err) {
+    console.error("Error evicting tenant from dormitory:", err);
+    res.status(500).send({
+      message: "Failed to evict tenant from dormitory."
+    });
+  }
+}
+
+
 exports.addDormImages = async (req, res) => {
   const id = req.params.id;
   try {
