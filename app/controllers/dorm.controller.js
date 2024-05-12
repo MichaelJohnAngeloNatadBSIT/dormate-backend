@@ -143,6 +143,11 @@ exports.update = (req, res) => {
 };
 
 exports.addTenants = async (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Dorm information to update can not be empty!"
+    });
+  }
   try {
     const id = req.params.id;
     const newTenants = req.body;
@@ -179,6 +184,11 @@ exports.addTenants = async (req, res) => {
 };
 
 exports.evictTenant = async (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Dorm information to update can not be empty!"
+    });
+  }
   try {
     const id = req.params.id;
     const newTenant = req.body;
