@@ -183,7 +183,7 @@ exports.evictTenant = async (req, res) => {
     const id = req.params.id;
     const newTenant = req.body;
 
-    console.log(newTenant);
+    console.log(newTenant, id);
 
     // Find the dormitory by ID
     const dorm = await Dorm.findById(id);
