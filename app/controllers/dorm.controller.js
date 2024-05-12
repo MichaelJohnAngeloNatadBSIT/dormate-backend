@@ -191,9 +191,6 @@ exports.evictTenant = async (req, res) => {
   }
   try {
     const { dorm_id, tenant_user_id } = req.params;
-    const newTenant = req.body;
-
-    console.log(req.body);
 
     // Find the dormitory by ID
     const dorm = await Dorm.findById(dorm_id);
