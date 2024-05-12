@@ -190,13 +190,13 @@ exports.evictTenant = async (req, res) => {
     });
   }
   try {
-    const id = req.params.id;
+    const { dorm_id, tenant_user_id } = req.params;
     const newTenant = req.body;
 
     console.log(req.body);
 
     // Find the dormitory by ID
-    const dorm = await Dorm.findById(id);
+    const dorm = await Dorm.findById(dorm_id);
 
     if (!dorm) {
       return res.status(404).send({
@@ -205,7 +205,7 @@ exports.evictTenant = async (req, res) => {
     }
 
     // Check if the new tenant's user_id already exists in the dormitory's tenants
-    const existingTenantIndex = dorm.tenants.findIndex(tenant => tenant.tenant_user_id === newTenant.tenant_user_id);
+    const existingTenantIndex = dorm.tenants.findIndex(tenant => tenant.tenant_user_id === tenant_user_id);
     if (existingTenantIndex !== -1) {
       // Remove the existing tenant with the same user_id
       dorm.tenants.splice(existingTenantIndex, 1);
