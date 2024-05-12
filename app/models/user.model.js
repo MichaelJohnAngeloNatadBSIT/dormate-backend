@@ -18,7 +18,7 @@ const User = mongoose.model(
     valid_image_id: String,
     dorm_id: String,
     dorm_title: String,
-    dorm_landlord: String,
+    dorm_landlord_user_id: String,
     is_tenant: Boolean,
     roles: [
       {
