@@ -33,7 +33,7 @@ module.exports = app => {
 
   // Delete a Dorm with id
   router.delete("/delete/:id", dormitory.delete);
-  router.delete("/evict_tenant/:id", dormitory.evictTenant);
+  router.delete("/evict_tenant/:dorm_id/:tenant_user_id", dormitory.evictTenant);
 
   router.post("/create/", dormitory.create);
   router.post("/add_tenant/:id", dormitory.addTenants);
