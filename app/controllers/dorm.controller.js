@@ -181,7 +181,7 @@ exports.addTenants = async (req, res) => {
 exports.evictTenant = async (req, res) => {
   try {
     const id = req.params.id;
-    const newTenant = req.body;
+    const newTenant = req.body.tenant_user_id;
 
     console.log(newTenant, id);
 
