@@ -25,8 +25,8 @@ exports.createSchedule = (req, res) => {
     description: req.body.description,
     user_full_name: req.body.user_full_name,
     dorm_title: req.body.dorm_title,
-    approve_visit: false,
-    is_accepted_tenant: false,
+    approve_visit: null,
+    is_accepted_tenant: null,
   });
   // Save schedule in the database
   schedule
@@ -64,7 +64,7 @@ exports.findAllSchedule = (req, res) => {
 exports.findAllScheduleLandlord = (req, res) => {
   var condition = { 
     landlord_id: req.params.id,
-    approve_visit: false
+    approve_visit: null
   };
   Schedule.find(condition)
     .then((data) => {
@@ -82,7 +82,7 @@ exports.findAllScheduleLandlord = (req, res) => {
 exports.findAllScheduleTenant = (req, res) => {
   var condition = { 
     tenant_user_id: req.params.id,
-    approve_visit: false
+    approve_visit: null
   };
   Schedule.find(condition)
     .then((data) => {
@@ -101,7 +101,7 @@ exports.findAllScheduleLandlordApproved = (req, res) => {
   var condition = { 
     landlord_id: req.params.id,
     approve_visit: true,
-    is_accepted_tenant: false
+    is_accepted_tenant: null
   };
   Schedule.find(condition)
     .then((data) => {

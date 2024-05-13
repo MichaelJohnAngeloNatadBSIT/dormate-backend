@@ -15,11 +15,9 @@ const Schedule = mongoose.model(
     schedule_date: Date,
     schedule_time: String,
     approve_visit: Boolean,
-    approve_visit_landlord: Boolean,
     description: String,
     dorm_title: String,
     is_accepted_tenant: Boolean,
-    is_accepted_tenant_landlord: Boolean,
   },
   { timestamps: true }
   )
