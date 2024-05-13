@@ -245,7 +245,12 @@ exports.retrieveUser = (req, res) => {
         address: data.address,
         mobile_number: data.mobile_number,
         user_image: data.user_image,
-        verified: data.verified
+        verified: data.verified,
+        dorm_id: data.dorm_id,
+        dorm_landlord_user_id: data.dorm_landlord_user_id,
+        dorm_title: data.dorm_title,
+        is_tenant: data.is_tenant,
+        dorm_tenant_date: data.dorm_tenant_date,
       });
     })
     .catch((err) => {
