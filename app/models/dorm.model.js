@@ -22,7 +22,6 @@ module.exports = (mongoose) => {
       tenant_full_name: String,
       tenant_username: String,
       tenant_review: String,
-      tenant_review_date: Date,
     },
     { timestamps: true }
     );
