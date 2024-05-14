@@ -246,7 +246,7 @@ exports.addTenantReview = async (req, res) => {
         continue; // Skip adding existing tenant
       }
       // Add new tenant to the tenants array
-      dorm.tenants.push(newReview);
+      dorm.tenantReviews.push(newReview);
     }
 
     // Save the updated dormitory
