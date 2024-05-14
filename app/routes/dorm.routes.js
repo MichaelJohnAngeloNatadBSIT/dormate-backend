@@ -37,6 +37,8 @@ module.exports = app => {
 
   router.post("/create/", dormitory.create);
   router.post("/add_tenant/:id", dormitory.addTenants);
+  router.post("/add_review/:id", dormitory.addTenantReview);
+
 
   router.put("/add_images/:id", dormitory.addDormImages);
   router.put("/add_business_registration_image/:id", dormitory.addBusinessRegImage);

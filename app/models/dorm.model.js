@@ -2,16 +2,30 @@ const { Schema } = require("mongoose");
 
 module.exports = (mongoose) => {
   // Define schema for Tenant
-  const tenantSchema = new mongoose.Schema({
+  const tenantSchema = new mongoose.Schema(
+  {
     tenant_username: String,
     tenant_user_id: String,
     tenant_full_name: String,
     tenant_contact_number: String,
     tenant_address: String,
-    approve_tenant: Boolean 
+    approve_tenant: Boolean ,
+    tenant_date_accepted: Date,
   },
   { timestamps: true }
   );
+
+  const tenantReviewSchema = new mongoose.Schema(
+    {
+      tenant_star_rating: Number,
+      tenant_user_id: String,
+      tenant_full_name: String,
+      tenant_username: String,
+      tenant_review: String,
+      tenant_review_date: Date,
+    },
+    { timestamps: true }
+    );
 
   const Dormitory = mongoose.model(
     "dormitory",
@@ -47,6 +61,7 @@ module.exports = (mongoose) => {
         payment_checkout_url: String,
         payment_reference_number: String,
         tenants: [tenantSchema],
+        tenantReviews: [tenantReviewSchema],
       },
       { timestamps: true }
     )
