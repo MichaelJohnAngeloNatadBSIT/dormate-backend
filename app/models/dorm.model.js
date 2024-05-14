@@ -21,6 +21,7 @@ module.exports = (mongoose) => {
       tenant_user_id: String,
       tenant_full_name: String,
       tenant_username: String,
+      tenant_user_image: String,
       tenant_review: String,
     },
     { timestamps: true }
