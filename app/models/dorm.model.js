@@ -10,7 +10,6 @@ module.exports = (mongoose) => {
     tenant_contact_number: String,
     tenant_address: String,
     approve_tenant: Boolean,
-    is_tenant: Boolean,
     tenant_date_accepted: Date,
   },
   { timestamps: true }

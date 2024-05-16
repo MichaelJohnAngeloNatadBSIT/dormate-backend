@@ -1,5 +1,6 @@
 const db = require("../models");
 const Dorm = db.dormitory;
+const User = db.user;
 
 const upload = require("../middlewares/dormUpload");
 const uploadCert = require("../middlewares/certificateUpload");
@@ -145,11 +146,11 @@ exports.update = (req, res) => {
 exports.addTenants = async (req, res) => {
   if (!req.body) {
     return res.status(400).send({
-      message: "Dorm information to update can not be empty!"
+      message: "Dorm information to update cannot be empty!"
     });
   }
   try {
-    const id = req.params.id;
+    const { id } = req.params;
     const newTenants = req.body;
 
     // Find the dormitory by ID
@@ -161,20 +162,43 @@ exports.addTenants = async (req, res) => {
       });
     }
 
-    // Check if each new tenant's user_id already exists in the dormitory's tenants
+    // Prepare an array to hold tenants to be added
+    const tenantsToAdd = [];
+
+    // Loop through each new tenant
     for (const newTenant of newTenants) {
-      const existingTenant = dorm.tenants.find(tenant => tenant.tenant_user_id === newTenant.tenant_user_id);
+      const { tenant_user_id } = newTenant;
+
+      // Find the user by tenant_user_id
+      const user = await User.findById(tenant_user_id);
+
+      // If user is not found or is already a tenant, log and skip adding them
+      // if (!user) {
+      //   continue;
+      // }
+
+      if (user.is_tenant) {
+        continue;
+      }
+
+      // Check if the tenant already exists in the dorm's tenants array
+      const existingTenant = dorm.tenants.some(tenant => tenant.tenant_user_id === tenant_user_id);
       if (existingTenant) {
         continue; // Skip adding existing tenant
       }
-      // Add new tenant to the tenants array
-      dorm.tenants.push(newTenant);
+
+      // Add the new tenant to the tenantsToAdd array
+      tenantsToAdd.push(newTenant);
     }
 
-    // Save the updated dormitory
-    await dorm.save();
-
-    res.send({ message: "New tenants added to dormitory successfully." });
+    // If there are tenants to add, update the dorm's tenants array and save
+    if (tenantsToAdd.length > 0) {
+      dorm.tenants.push(...tenantsToAdd);
+      await dorm.save();
+      res.send({ message: "New tenants added to dormitory successfully." });
+    } else {
+      res.send({ message: "User is already a tenant of another dorm" });
+    }
   } catch (err) {
     console.error("Error adding tenants to dormitory:", err);
     res.status(500).send({
@@ -182,6 +206,9 @@ exports.addTenants = async (req, res) => {
     });
   }
 };
+
+
+
 
 exports.evictTenant = async (req, res) => {
   if (!req.body) {
