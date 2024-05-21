@@ -4,6 +4,7 @@ const Admin = db.admin;
 const Role = db.role;
 const User = db.user;
 const Schedule = db.schedule;
+const Payment = db.payment;
 const Dorm = db.dormitory;
 
 var jwt = require("jsonwebtoken");
@@ -392,6 +393,17 @@ exports.countSchedules = (req, res) => {
   });;
 }
 
+exports.retrieveAllPayments = (req, res) => {
+  Payment.find()
+    .then((data) => {
+      if (!data)
+        res.status(400).send({ message: "There are currently no Payment."});
+      else res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: "Error retrieving Payments" });
+    });
+};
 
 
 
