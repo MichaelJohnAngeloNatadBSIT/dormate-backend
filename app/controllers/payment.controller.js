@@ -59,7 +59,7 @@ exports.createPayment = async (req, res) => {
                     dorm_id: paymentDetails.dorm_id,
                 });
 
-                payment.save()
+                payment.save(payment)
                     .then((data) => {
                         res.send({
                             message: "Payment was created successfully.",
