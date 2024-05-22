@@ -120,20 +120,24 @@ exports.update = (req, res) => {
         message: "Payment information to update can not be empty!"
       });
     }
-    const id = req.params.id;
-  
-    Payment.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-      .then(data => {
+    const checkout_url = req.params.checkout_url;
+
+    // Find the payment by checkout_url and update it with the provided data
+    Payment.findOneAndUpdate({ checkout_url: checkout_url }, req.body, { useFindAndModify: false })
+    .then(data => {
         if (!data) {
-          res.status(404).send({
-            message: `Cannot update Payment with id=${id}. Maybe Payment was not found!`
-          });
-        } else res.send({ message: "Payment was updated successfully." });
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error updating Payment with id=" + id
+        res.status(404).send({
+            message: `Cannot update Payment with checkout_url=${checkout_url}. Maybe Payment was not found!`
         });
-      });
+        } else {
+        res.send({ message: "Payment was updated successfully." });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+        message: "Error updating Payment with checkout_url=" + checkout_url
+        });
+    });
+
   };
 
