@@ -12,7 +12,7 @@ module.exports = app => {
     // Retrieve payment 
     router.get("/get-payment/:reference_number", payment.getPayment);
 
-    router.put("update-payment/:checkout_url", payment.update);
+    router.put("/update-payment/", payment.update);
   
     app.use('/api/payment', router);
     };

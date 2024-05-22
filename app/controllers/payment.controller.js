@@ -120,7 +120,7 @@ exports.update = (req, res) => {
         message: "Payment information to update can not be empty!"
       });
     }
-    const checkout_url = req.params.checkout_url;
+    const checkout_url = req.body.checkout_url;
 
     // Find the payment by checkout_url and update it with the provided data
     Payment.findOneAndUpdate({ checkout_url: checkout_url }, req.body, { useFindAndModify: false })
