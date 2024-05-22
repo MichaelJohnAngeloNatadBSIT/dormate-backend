@@ -11,6 +11,8 @@ module.exports = app => {
 
     // Retrieve payment 
     router.get("/get-payment/:reference_number", payment.getPayment);
+
+    router.put("update-payment/:id", payment.update);
   
     app.use('/api/payment', router);
     };

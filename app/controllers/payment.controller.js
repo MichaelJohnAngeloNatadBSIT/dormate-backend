@@ -114,3 +114,26 @@ exports.getPayment = async (req, res) => {
         });
 }
 
+exports.update = (req, res) => {
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Payment information to update can not be empty!"
+      });
+    }
+    const id = req.params.id;
+  
+    Payment.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Payment with id=${id}. Maybe Payment was not found!`
+          });
+        } else res.send({ message: "Payment was updated successfully." });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating Payment with id=" + id
+        });
+      });
+  };
+
