@@ -158,32 +158,42 @@ db.mongoose
   // Import visit model
 const Visit = require('./models/Visit');
 
+// Helper to get client IP
+const getClientIp = (req) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  return ip;
+};
+
 // Routes
 app.get('/api/visits', async (req, res) => {
-    try {
-        let visit = await Visit.findOne({});
-        if (!visit) {
-            visit = new Visit({ count: 0 });
-            await visit.save();
-        }
-        res.json(visit);
-    } catch (err) {
-        res.status(500).send(err);
-    }
+  try {
+      let visit = await Visit.findOne({});
+      if (!visit) {
+          visit = new Visit({ count: 0, ips: [] });
+          await visit.save();
+      }
+      res.json(visit);
+  } catch (err) {
+      res.status(500).send(err);
+  }
 });
 
 app.post('/api/visits/increment', async (req, res) => {
-    try {
-        let visit = await Visit.findOne({});
-        if (!visit) {
-            visit = new Visit({ count: 0 });
-        }
-        visit.count++;
-        await visit.save();
-        res.json(visit);
-    } catch (err) {
-        res.status(500).send(err);
-    }
+  try {
+      let visit = await Visit.findOne({});
+      if (!visit) {
+          visit = new Visit({ count: 0, ips: [] });
+      }
+      visit.count++;
+      const clientIp = getClientIp(req);
+      if (!visit.ips.includes(clientIp)) {
+          visit.ips.push(clientIp);
+      }
+      await visit.save();
+      res.json(visit);
+  } catch (err) {
+      res.status(500).send(err);
+  }
 });
 
 
