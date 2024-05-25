@@ -15,6 +15,7 @@ db.admin = require("../models/admin.model.js");
 db.schedule = require("../models/schedule.model.js");
 db.role = require("../models/role.model.js");
 db.payment = require("../models/payment.model.js")(mongoose);
+db.visit = require("../models/visit.model.js")(mongoose);
 db.ROLES = ["user", "admin", "landlord"];
 
 

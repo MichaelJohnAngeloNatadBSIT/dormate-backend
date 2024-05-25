@@ -156,12 +156,11 @@ db.mongoose
   }
 
   // Import visit model
-const Visit = require('./models/Visit');
-
+  const Visit = require('./app/models/visit.model');  // Ensure this path is correct
 // Helper to get client IP
 const getClientIp = (req) => {
-  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  return ip;
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
+  return ip.replace(/^.*:/, ''); // Strip IPv6 prefix for simplicity
 };
 
 // Routes
@@ -174,6 +173,7 @@ app.get('/api/visits', async (req, res) => {
       }
       res.json(visit);
   } catch (err) {
+      console.error('Error fetching visits:', err);
       res.status(500).send(err);
   }
 });
@@ -186,16 +186,17 @@ app.post('/api/visits/increment', async (req, res) => {
       }
       visit.count++;
       const clientIp = getClientIp(req);
+      console.log('Client IP:', clientIp);
       if (!visit.ips.includes(clientIp)) {
           visit.ips.push(clientIp);
       }
       await visit.save();
       res.json(visit);
   } catch (err) {
+      console.error('Error incrementing visits:', err);
       res.status(500).send(err);
   }
 });
-
 
   
 
