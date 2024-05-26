@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
 
+const friendSchema = new mongoose.Schema(
+  {
+    friend_username: String,
+    friend_user_id: String,
+    friend_full_name: String,
+    friend_contact_number: String,
+    friend_verified: Boolean,
+    friend_approved: Boolean,
+
+  },
+  { timestamps: true }
+  );
+
 const User = mongoose.model(
   "User",
   new mongoose.Schema(
@@ -21,6 +34,7 @@ const User = mongoose.model(
     dorm_landlord_user_id: String,
     is_tenant: Boolean,
     dorm_tenant_date: Date,
+    friend_list: [friendSchema],
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,

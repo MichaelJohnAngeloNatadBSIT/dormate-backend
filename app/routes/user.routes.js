@@ -34,6 +34,9 @@ module.exports = function(app) {
   // app.get("/api/user/files/:name", controller.download);
   app.get("/api/user/:id", controller.retrieveUser);
   app.get("/api/user/user_image/:name", controller.download);
+  app.get("/api/user_list", controller.findAllUser)
+
+  app.post("/api/user/add_friend/:id", controller.addFriend);
 
   // return app.use("/", router);
 };

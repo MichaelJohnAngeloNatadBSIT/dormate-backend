@@ -213,7 +213,7 @@ exports.download = async (req, res) => {
 exports.findAll = (req, res) => {
   const first_name = req.query.first_name;
   var condition = name
-    ? { first_name: { $regex: new RegExp(first_name), $options: "i" } }
+    ? { first_name: { $regex: new RegExp(first_name), $options: "i" }, first_name: { $regex: new RegExp(first_name), $options: "i" }, first_name: { $regex: new RegExp(first_name), $options: "i" } }
     : {};
 
   User.find(condition)
@@ -350,7 +350,91 @@ exports.delete = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Dormitory with id=" + id,
+        message: "Could not delete User with id=" + id,
+      });
+    });
+};
+
+exports.addFriend = async (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "User information to update cannot be empty!"
+    });
+  }
+  try {
+    const { id } = req.params;
+    const newFriends = req.body;
+
+    // Find the dormitory by ID
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).send({
+        message: `User not found with id ${id}.`
+      });
+    }
+
+    // Prepare an array to hold tenants to be added
+    const usersToAdd = [];
+
+    // Loop through each new tenant
+    for (const newFriend of newFriends) {
+      const { friend_user_id } = newFriend;
+
+      // Find the user by tenant_user_id
+      const user = await User.findById(friend_user_id);
+
+      // If user is not found or is already a tenant, log and skip adding them
+      // if (!user) {
+      //   continue;
+      // }
+
+      // if (user.is_tenant) {
+      //   continue;
+      // }
+
+      // Check if the tenant already exists in the dorm's tenants array
+      const existingFriend = user.friend_list.some(user => user.friend_user_id === friend_user_id);
+      if (existingFriend) {
+        continue; // Skip adding existing tenant
+      }
+
+      // Add the new tenant to the tenantsToAdd array
+      usersToAdd.push(newFriend);
+    }
+
+    // If there are tenants to add, update the dorm's tenants array and save
+    // if (usersToAdd.length > 0) {
+      user.friend_list.push(...usersToAdd);
+      await user.save();
+      res.send({ message: "New tenants added to dormitory successfully." });
+    // } else {
+    //   res.send({ message: "User is already a tenant of another dorm" });
+    // }
+  } catch (err) {
+    console.error("Error adding user as friend:", err);
+    res.status(500).send({
+      message: "Failed to add user as friend."
+    });
+  }
+};
+
+
+// Retrieve all Dorm from the database.
+exports.findAllUser = (req, res) => {
+  const title = req.query.title;
+  var condition = { 
+    verified: true
+  };
+
+  User.find({ $and: [{ $or: [{ username: { $regex: new RegExp(title), $options: "i" } }, { first_name: { $regex: new RegExp(title), $options: "i" } }, { last_name: { $regex: new RegExp(title), $options: "i" } }] }, condition] })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving dormitory.",
       });
     });
 };
