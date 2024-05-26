@@ -407,7 +407,7 @@ exports.addFriend = async (req, res) => {
     // if (usersToAdd.length > 0) {
       user.friend_list.push(...usersToAdd);
       await user.save();
-      res.send({ message: "New tenants added to dormitory successfully." });
+      res.send({ message: "User added as a friend successfully." });
     // } else {
     //   res.send({ message: "User is already a tenant of another dorm" });
     // }
