@@ -34,8 +34,8 @@ module.exports = function(app) {
   // app.get("/api/user/files/:name", controller.download);
   app.get("/api/user/:id", controller.retrieveUser);
   app.get("/api/user/user_image/:name", controller.download);
-  app.get("/api/user_list/:id", controller.findAllUser);
-  app.get("/api/user_list/:title", controller.findAllUser);
+  app.get("/api/user/user_list/:id", controller.findAllUser);
+  app.get("/api/user/user_list/:title", controller.findAllUser);
 
   app.get("/api/user/friend_request_list/:id", controller.retrieveUserFriendRequest);
   app.get("/api/user/friend_request_list/:title", controller.findUserFriendRequest);
