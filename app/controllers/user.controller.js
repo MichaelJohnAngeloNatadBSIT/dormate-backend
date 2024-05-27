@@ -493,7 +493,7 @@ exports.approveFriendRequest = async (req, res) => {
 
     // Update friend_approved status in friend's friend list
     const friendUpdateResult = await User.updateOne(
-      { _id: requestFriendId, 'friend_list.friend_user_id': requestFriendId },
+      { _id: userId, 'friend_list.friend_user_id': userId },
       {
         $set: {
           'friend_list.$.friend_approved': friend_approved,
