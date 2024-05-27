@@ -261,6 +261,39 @@ exports.retrieveUser = (req, res) => {
     });
 };
 
+
+// Find a user with an id
+exports.retrieveUserFriendRequest = (req, res) => {
+  const id = req.params.id;
+
+  User.findById(id)
+    .then((data) => {
+      if (!data)
+        res.status(404).send({ message: "Not found User with id " + id });
+      else
+        res.send({
+          id: data._id,
+          username: data.username,
+          email: data.email,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          address: data.address,
+          mobile_number: data.mobile_number,
+          user_image: data.user_image,
+          verified: data.verified,
+          dorm_id: data.dorm_id,
+          dorm_landlord_user_id: data.dorm_landlord_user_id,
+          dorm_title: data.dorm_title,
+          is_tenant: data.is_tenant,
+          dorm_tenant_date: data.dorm_tenant_date,
+          friend_list: data.friend_list
+        });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: "Error retrieving User with id=" + id });
+    });
+};
+
 // Edit details of a User by the id in the request
 exports.updateUser = (req, res) => {
   const id = req.params.id;
