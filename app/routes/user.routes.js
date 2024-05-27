@@ -41,7 +41,7 @@ module.exports = function(app) {
   app.get("/api/user/friend_request_list/:title", controller.findUserFriendRequest);
   app.put("/api/user/approve_friend_request/:userId/:requestFriendId", controller.approveFriendRequest);
 
-  app.post("/api/user/user/add_friend/:id", controller.addFriend);
+  app.post("/api/user/add_friend/:id", controller.addFriend);
 
   // return app.use("/", router);
 };
