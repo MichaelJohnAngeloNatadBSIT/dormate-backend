@@ -463,6 +463,7 @@ exports.addFriend = async (req, res) => {
     });
   }
 };
+
 exports.approveFriendRequest = async (req, res) => {
   const { userId, requestFriendId } = req.params;
   const { friend_approved } = req.body;
@@ -492,7 +493,7 @@ exports.approveFriendRequest = async (req, res) => {
 
     // Update friend_approved status in friend's friend list
     const friendUpdateResult = await User.updateOne(
-      { _id: requestFriendId, 'friend_list.friend_user_id': userId },
+      { _id: requestFriendId, 'friend_list.friend_user_id': requestFriendId },
       {
         $set: {
           'friend_list.$.friend_approved': friend_approved,
@@ -511,7 +512,7 @@ exports.approveFriendRequest = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+ 
 
 
 // Retrieve all Dorm from the database.
