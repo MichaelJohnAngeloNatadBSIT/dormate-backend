@@ -436,8 +436,11 @@ exports.addFriend = async (req, res) => {
 // Retrieve all Dorm from the database.
 exports.findAllUser = (req, res) => {
   const title = req.query.title;
+  const userId = req.params.id;
+
   var condition = {
     verified: true,
+    _id: { $ne: userId } 
   };
 
   User.find({
@@ -474,20 +477,18 @@ exports.findUserFriendRequest = (req, res) => {
     requested_by_user_id: { $ne: userId },
   };
 
-  User.find(
-    // {
-    // $and: [
-    //   {
-    //     $or: [
-    //       { username: { $regex: new RegExp(title), $options: "i" } },
-    //       { first_name: { $regex: new RegExp(title), $options: "i" } },
-    //       { last_name: { $regex: new RegExp(title), $options: "i" } },
-    //     ],
-    //   },
-      condition
-  //   ],
-  // }
-  )
+  User.find({
+    $and: [
+      {
+        $or: [
+          { username: { $regex: new RegExp(title), $options: "i" } },
+          { first_name: { $regex: new RegExp(title), $options: "i" } },
+          { last_name: { $regex: new RegExp(title), $options: "i" } },
+        ],
+      },
+      condition,
+    ],
+  })
     .then((data) => {
       res.send(data);
     })
