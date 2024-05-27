@@ -462,3 +462,34 @@ exports.findAllUser = (req, res) => {
       });
     });
 };
+// Retrieve all Dorm from the database.
+exports.findUserFriendRequest = (req, res) => {
+  const title = req.query.title;
+  const userId = req.params.id;
+  const condition = {
+    friend_approved: false,
+    friend_user_id: { $ne: userId },
+  };
+
+  User.find({
+    $and: [
+      {
+        $or: [
+          { username: { $regex: new RegExp(title), $options: "i" } },
+          { first_name: { $regex: new RegExp(title), $options: "i" } },
+          { last_name: { $regex: new RegExp(title), $options: "i" } },
+        ],
+      },
+      condition,
+    ],
+  })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving dormitory.",
+      });
+    });
+};
