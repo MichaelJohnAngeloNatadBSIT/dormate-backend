@@ -207,9 +207,6 @@ exports.addTenants = async (req, res) => {
   }
 };
 
-
-
-
 exports.evictTenant = async (req, res) => {
   if (!req.body) {
     return res.status(400).send({

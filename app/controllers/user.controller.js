@@ -253,6 +253,7 @@ exports.retrieveUser = (req, res) => {
           dorm_title: data.dorm_title,
           is_tenant: data.is_tenant,
           dorm_tenant_date: data.dorm_tenant_date,
+          friend_list: data.friend_list
         });
     })
     .catch((err) => {
