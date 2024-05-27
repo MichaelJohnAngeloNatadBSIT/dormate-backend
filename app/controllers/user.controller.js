@@ -468,6 +468,7 @@ exports.approveFriendRequest = async (req, res) => {
   const { friend_approved } = req.body;
 
   try {
+    // Find both users
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -478,22 +479,29 @@ exports.approveFriendRequest = async (req, res) => {
       return res.status(404).json({ message: 'Friend not found' });
     }
 
-    const updateFields = {
-      'friend_list.$.friend_approved': friend_approved,
-      'friend_list.$.updatedAt': new Date()
-    };
-
-    const result = await User.updateOne(
+    // Update friend_approved status in user's friend list
+    const userUpdateResult = await User.updateOne(
       { _id: userId, 'friend_list.friend_user_id': requestFriendId },
-      { $set: updateFields }
+      {
+        $set: {
+          'friend_list.$.friend_approved': friend_approved,
+          'friend_list.$.updatedAt': new Date()
+        }
+      }
     );
 
-    const resultRequestSender = await User.updateOne(
+    // Update friend_approved status in friend's friend list
+    const friendUpdateResult = await User.updateOne(
       { _id: requestFriendId, 'friend_list.friend_user_id': userId },
-      { $set: updateFields }
+      {
+        $set: {
+          'friend_list.$.friend_approved': friend_approved,
+          'friend_list.$.updatedAt': new Date()
+        }
+      }
     );
 
-    if (result.nModified === 0 || resultRequestSender.nModified === 0) {
+    if (userUpdateResult.nModified === 0 || friendUpdateResult.nModified === 0) {
       return res.status(404).json({ message: 'Friend not found or already approved' });
     }
 
@@ -503,8 +511,6 @@ exports.approveFriendRequest = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-
 
 
 
