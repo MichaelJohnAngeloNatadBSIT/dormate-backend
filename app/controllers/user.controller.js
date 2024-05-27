@@ -468,6 +468,7 @@ exports.findUserFriendRequest = (req, res) => {
   const userId = req.params.id;
   const condition = {
     friend_approved: false,
+    verified: true,
     friend_user_id: { $ne: userId },
   };
 
