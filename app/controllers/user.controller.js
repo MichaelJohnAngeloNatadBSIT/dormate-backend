@@ -462,6 +462,7 @@ exports.findAllUser = (req, res) => {
       });
     });
 };
+
 // Retrieve all Dorm from the database.
 exports.findUserFriendRequest = (req, res) => {
   const title = req.query.title;
@@ -469,7 +470,8 @@ exports.findUserFriendRequest = (req, res) => {
   const condition = {
     friend_approved: false,
     verified: true,
-    friend_user_id: { $ne: userId },
+    friend_user_id: userId,
+    requested_by_user_id: { $ne: userId },
   };
 
   User.find({
