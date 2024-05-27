@@ -37,7 +37,7 @@ module.exports = function(app) {
   app.get("/api/user_list", controller.findAllUser);
   app.get("/api/user_list/:title", controller.findAllUser);
 
-  app.get("/api/friend_request_list", controller.findUserFriendRequest);
+  app.get("/api/friend_request_list/:id", controller.findUserFriendRequest);
   app.get("/api/friend_request_list/:title", controller.findUserFriendRequest);
 
   app.post("/api/user/add_friend/:id", controller.addFriend);
