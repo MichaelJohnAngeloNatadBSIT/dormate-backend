@@ -8,7 +8,8 @@ const friendSchema = new mongoose.Schema(
     friend_contact_number: String,
     friend_verified: Boolean,
     friend_approved: Boolean,
-
+    requested_by_user_id: String,
+    requested_by_username: String,
   },
   { timestamps: true }
   );
