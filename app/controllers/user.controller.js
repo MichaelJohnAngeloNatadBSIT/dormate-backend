@@ -581,3 +581,74 @@ exports.findUserFriendRequest = (req, res) => {
       });
     });
 };
+
+
+exports.referFriend = async (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "User information to update cannot be empty!",
+    });
+  }
+
+  console.log(req.body);
+  try {
+    const { id } = req.params;
+    const newReferral = req.body;
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).send({
+        message: `User not found with id ${id}.`,
+      });
+    }
+
+    const usersToRefer = [];
+    const alreadyReferred = [];
+
+    for (const newRef of newReferral) {
+      const { referral_friend_user_id } = newRef;
+
+      const friend = await User.findById(referral_friend_user_id);
+      if (!friend) {
+        return res.status(404).send({
+          message: `Friend not found with id ${referral_friend_user_id}.`,
+        });
+      }
+
+      const existingrReferral = user.referral.some(
+        (referral) => referral.referral_friend_user_id === referral_friend_user_id
+      );
+
+      if (!existingrReferral) {
+        usersToRefer.push(newRef);
+      } else {
+        alreadyReferred.push(referral_friend_user_id);
+      }
+    }
+
+    if (usersToRefer.length > 0) {
+      user.referral.push(...usersToRefer);
+      await user.save();
+    }
+
+    let responseMessage = "Friends added successfully.";
+    if (alreadyReferred.length > 0) {
+      responseMessage += ` Friend were already in the friend list`;
+    }
+
+    res.send({
+      message: responseMessage,
+      referredFriend: usersToRefer,
+      alreadyReferred,
+    });
+  } catch (err) {
+    console.error("Error referring user to dorm:", err);
+    res.status(500).send({
+      message: "Failed to refer user to dorm.",
+    });
+  }
+};
+
+//finished no double entry
+//finish the referral ui then test for bugs
