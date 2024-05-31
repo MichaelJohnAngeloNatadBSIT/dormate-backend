@@ -590,7 +590,6 @@ exports.referFriend = async (req, res) => {
     });
   }
 
-  console.log(req.body);
   try {
     const { id } = req.params;
     const newReferral = req.body;
@@ -650,5 +649,4 @@ exports.referFriend = async (req, res) => {
   }
 };
 
-//finished no double entry
 //finish the referral ui then test for bugs
