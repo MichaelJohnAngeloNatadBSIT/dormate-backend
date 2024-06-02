@@ -253,7 +253,9 @@ exports.retrieveUser = (req, res) => {
           dorm_title: data.dorm_title,
           is_tenant: data.is_tenant,
           dorm_tenant_date: data.dorm_tenant_date,
-          friend_list: data.friend_list
+          friend_list: data.friend_list,
+          referral: data.referral
+
         });
     })
     .catch((err) => {
@@ -286,7 +288,8 @@ exports.retrieveUserFriendRequest = (req, res) => {
           dorm_title: data.dorm_title,
           is_tenant: data.is_tenant,
           dorm_tenant_date: data.dorm_tenant_date,
-          friend_list: data.friend_list
+          friend_list: data.friend_list,
+          referral: data.referral
         });
     })
     .catch((err) => {
