@@ -252,6 +252,7 @@ exports.retrieveUser = (req, res) => {
           dorm_landlord_user_id: data.dorm_landlord_user_id,
           dorm_title: data.dorm_title,
           is_tenant: data.is_tenant,
+          is_landlord: data.is_landlord,
           dorm_tenant_date: data.dorm_tenant_date,
           friend_list: data.friend_list,
           referral: data.referral
@@ -287,6 +288,7 @@ exports.retrieveUserFriendRequest = (req, res) => {
           dorm_landlord_user_id: data.dorm_landlord_user_id,
           dorm_title: data.dorm_title,
           is_tenant: data.is_tenant,
+          is_landlord: data.is_landlord,
           dorm_tenant_date: data.dorm_tenant_date,
           friend_list: data.friend_list,
           referral: data.referral
@@ -652,4 +654,3 @@ exports.referFriend = async (req, res) => {
   }
 };
 
-//finish the referral ui then test for bugs
