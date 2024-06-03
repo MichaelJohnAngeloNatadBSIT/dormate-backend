@@ -40,4 +40,6 @@ module.exports = function (app) {
   app.get("/api/admin/count_schedule", controller.countSchedules);
 
   app.get("/api/admin/all_payment", controller.retrieveAllPayments);
+  app.get("/api/admin/count_payment", controller.countPayments);
+  app.get("/api/admin/total_payment", controller.totalPayments);
 };

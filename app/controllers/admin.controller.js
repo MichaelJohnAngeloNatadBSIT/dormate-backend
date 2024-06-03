@@ -385,11 +385,11 @@ exports.retrieveAllSchedules = (req, res) => {
 exports.countSchedules = (req, res) => {
   Schedule.countDocuments().then((data) => {
   if (!data)
-      res.status(400).send({ message: "There are currently no dorm."});
+      res.status(400).send({ message: "There are currently no schedules."});
   else res.status(200).send({data});
   })
   .catch((err) => {
-    res.status(500).send({ message: "Error retrieving count of Dorms" });
+    res.status(500).send({ message: "Error retrieving count of schedules" });
   });;
 }
 
@@ -404,6 +404,38 @@ exports.retrieveAllPayments = (req, res) => {
       res.status(500).send({ message: "Error retrieving Payments" });
     });
 };
+
+exports.countPayments = (req, res) => {
+  Payment.countDocuments().then((data) => {
+  if (!data)
+      res.status(400).send({ message: "There are currently no payments."});
+  else res.status(200).send({data});
+  })
+  .catch((err) => {
+    res.status(500).send({ message: "Error retrieving count of Payments" });
+  });;
+}
+
+exports.totalPayments = (req, res) => {
+  Payment.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalAmount: { $sum: "$amount" }
+      }
+    }
+  ])
+  .then((result) => {
+    if (result.length === 0) {
+      res.status(400).send({ message: "There are currently no payments." });
+    } else {
+      res.status(200).send({ totalAmount: result[0].totalAmount });
+    }
+  })
+  .catch((err) => {
+    res.status(500).send({ message: "Error calculating total payments" });
+  });
+}
 
 
 
