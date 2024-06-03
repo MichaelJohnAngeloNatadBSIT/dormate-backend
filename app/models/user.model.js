@@ -47,6 +47,7 @@ const User = mongoose.model(
     dorm_title: String,
     dorm_landlord_user_id: String,
     is_tenant: Boolean,
+    is_landlord: Boolean,
     dorm_tenant_date: Date,
     friend_list: [friendSchema],
     referral:[referralSchema],
