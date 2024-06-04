@@ -52,6 +52,7 @@ exports.create = (req, res) => {
     dorm_images: req.body.dorm_images,
     visit_counter: visit_counter_val,
     publish: false,
+    admin_approval: false,
     payment_status: "unpaid",
   });
 

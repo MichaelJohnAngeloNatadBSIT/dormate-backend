@@ -60,6 +60,7 @@ module.exports = (mongoose) => {
         payment_status: String,
         payment_checkout_url: String,
         payment_reference_number: String,
+        admin_approval: Boolean,
         tenants: [tenantSchema],
         tenantReviews: [tenantReviewSchema],
       },
