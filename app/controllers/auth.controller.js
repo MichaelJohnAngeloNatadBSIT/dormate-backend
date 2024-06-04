@@ -120,6 +120,8 @@ exports.signin = (req, res) => {
         user_image: user.user_image,
         verified: user.verified,
         roles: authorities,
+        is_tenant: user.is_tenant,
+        is_landlord: user.is_landlord,
         accessToken: token,
         message: "Logged in Successfully"
       });
