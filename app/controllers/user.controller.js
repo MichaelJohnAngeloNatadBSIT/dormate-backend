@@ -253,6 +253,8 @@ exports.retrieveUser = (req, res) => {
           dorm_title: data.dorm_title,
           is_tenant: data.is_tenant,
           is_landlord: data.is_landlord,
+          as_tenant: data.as_tenant,
+          as_landlord: data.as_landlord,
           dorm_tenant_date: data.dorm_tenant_date,
           friend_list: data.friend_list,
           referral: data.referral
@@ -289,6 +291,8 @@ exports.retrieveUserFriendRequest = (req, res) => {
           dorm_title: data.dorm_title,
           is_tenant: data.is_tenant,
           is_landlord: data.is_landlord,
+          as_tenant: data.as_tenant,
+          as_landlord: data.as_tenant,
           dorm_tenant_date: data.dorm_tenant_date,
           friend_list: data.friend_list,
           referral: data.referral
