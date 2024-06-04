@@ -124,6 +124,8 @@ exports.signin = (req, res) => {
         roles: authorities,
         is_tenant: user.is_tenant,
         is_landlord: user.is_landlord,
+        as_tenant: user.as_tenant,
+        as_landlord: user.as_landlord,
         accessToken: token,
         message: "Logged in Successfully"
       });
