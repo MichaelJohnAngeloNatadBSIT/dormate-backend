@@ -17,7 +17,7 @@ exports.signup = (req, res) => {
     user_image: req.body.user_image,
     mobile_number: req.body.mobile_number,
     is_tenant: req.body.role_choice.is_tenant,
-    is_tenant: req.body.role_choice.is_landlord,
+    is_landlord: req.body.role_choice.is_landlord,
     verified: false
   });
 
