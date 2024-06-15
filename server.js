@@ -31,6 +31,7 @@ var corsOptions = {
     "https://benevolent-jalebi-b22329.netlify.app",
     "https://dormate.netlify.app",
     "https://dormate-app.onrender.com/",
+    "https://dormate-backend.onrender.com",
     "https://dormate-admin.netlify.app/"
   ],
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
