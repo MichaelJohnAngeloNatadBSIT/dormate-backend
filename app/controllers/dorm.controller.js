@@ -18,8 +18,8 @@ const url = dbConfig.url;
 // const baseUrl = "http://192.168.1.178:8080/api/dorm/dorm_images/";
 // const certBaseUrl = "http://192.168.1.178:8080/api/dorm/dorm_images/certificate/"
 
-const baseUrl = "https://dormate-app.onrender.com/api/dorm/dorm_images/";
-const certBaseUrl = "https://dormate-app.onrender.com/api/dorm/dorm_images/certificate/"
+const baseUrl = "https://dormate-backend.onrender.com/api/dorm/dorm_images/";
+const certBaseUrl = "https://dormate-backend.onrender.com/api/dorm/dorm_images/certificate/"
 
 // const baseUrl = process.env.RENDER_URL+"/api/dorm/dorm_images/";
 // const certBaseUrl = process.env.RENDER_URL+"/api/dorm/dorm_images/certificate/"
